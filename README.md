@@ -9,13 +9,12 @@
 
 ## INSTALATION
 
-1. Clone the repository
-2. Run composer install
-3. Run npm install
-4. Run php artisan key:generate
-5. Run copy .env.example to .env
-6. Create a database and configure it in .env
-7. Run php artisan migrate --seed
+1. git clone [link] or use [folder name] for specific folder name
+2. rename .env.example to *.env*
+5. edit .env and make sure edit *DB_DATABASE* to your database
+3. run *php artisan key:generate*
+4. run *composer install*
+7. run *php artisan migrate:fresh --seed*
 8. If u have local serve like laragon, just start and run [foldername].test for run the app
 9. and the last one dont forget to run npm run dev
 
