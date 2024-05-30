@@ -10,13 +10,13 @@
 ## INSTALATION
 
 1. git clone [link] or use [folder name] for specific folder name
-2. rename .env.example to *.env*
-5. edit .env and make sure edit *DB_DATABASE* to your database
-3. run *php artisan key:generate*
-4. run *composer install*
-7. run *php artisan migrate:fresh --seed*
-8. If u have local serve like laragon, just start and run [foldername].test for run the app
-9. and the last one dont forget to run npm run dev
+2. run composer install
+3. make new file .env and paste env dummy
+4. edit .env and make sure edit *DB_DATABASE* to your database
+5. run *php artisan key:generate*
+6. run *php artisan migrate:fresh --seed*
+7. If u have local serve like laragon, just start and run [foldername].test for run the app
+8. and the last one dont forget to run npm run dev
 
 ## ROLES & PERMISSIONS
 
@@ -25,9 +25,10 @@ and we are :
 
 1. roles is automaticly running if u run migrate with --seed
 2. for demo purpose, u can use :
-    - super admin is creamynald@cms.test
-    - admin is admin@cms.test
-    - also user is test@cms.test
+    - super admin is superadmin@perpus.test
+    - admin is admin@perpus.test
+    - kepsek is kepsek@perpus.test
+    - also user is siswa@perpus.test
     - and then, default password is _password_
 
 THANKS
