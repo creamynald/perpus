@@ -1,26 +1,60 @@
-@can('create post')
+@hasrole(['admin', 'super admin'])
 <li class="nav-main-heading">Menu</li>
 <li class="nav-main-item">
     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false"
         href="#">
         <i class="nav-main-link-icon far fa-note-sticky"></i>
-        <span class="nav-main-link-name">Post</span>
+        <span class="nav-main-link-name">Administrasi</span>
     </a>
     <ul class="nav-main-submenu">
         <li class="nav-main-item">
             <a class="nav-main-link" href="javascript:void(0)">
-                <span class="nav-main-link-name">Link #1</span>
+                <span class="nav-main-link-name">Peminjaman Buku</span>
             </a>
         </li>
         <li class="nav-main-item">
             <a class="nav-main-link" href="javascript:void(0)">
-                <span class="nav-main-link-name">Link #2</span>
+                <span class="nav-main-link-name">Pengembalian Buku</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link" href="javascript:void(0)">
+                <span class="nav-main-link-name">Data Pustaka</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link" href="javascript:void(0)">
+                <span class="nav-main-link-name">Data Anggota</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link" href="javascript:void(0)">
+                <span class="nav-main-link-name">Pengaturan</span>
             </a>
         </li>
     </ul>
 </li>
-@endcan
-@can('permission')
+<li class="nav-main-item">
+    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false"
+        href="#">
+        <i class="nav-main-link-icon far fa-note-sticky"></i>
+        <span class="nav-main-link-name">Laporan</span>
+    </a>
+    <ul class="nav-main-submenu">
+        <li class="nav-main-item">
+            <a class="nav-main-link" href="javascript:void(0)">
+                <span class="nav-main-link-name">Lap. Peminjaman Buku</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link" href="javascript:void(0)">
+                <span class="nav-main-link-name">Lap. Pengembalian Buku</span>
+            </a>
+        </li>
+    </ul>
+</li>
+@endhasrole
+@hasrole('super admin')
 <li class="nav-main-heading">Administrator</li>
 <li class="nav-main-item {{ request()->segment(2) == 'role-and-permission' ? 'open' : '' }}">
     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false"
@@ -55,4 +89,4 @@
         </li>
     </ul>
 </li>
-@endcan
+@endhasrole
