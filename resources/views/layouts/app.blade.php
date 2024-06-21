@@ -24,7 +24,8 @@
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="{{ asset('assets/media/favicons/favicon.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/media/favicons/favicon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{{ asset('assets/media/favicons/favicon-192x192.png') }}">
     <link rel="apple-touch-icon" sizes="180x180"
         href="{{ asset('assets/media/favicons/apple-touch-icon-180x180.png') }}">
     <!-- END Icons -->
@@ -36,6 +37,23 @@
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <link rel="stylesheet" id="css-theme" href="{{ asset('assets/css/themes/pulse.min.css') }}">
     <!-- END Stylesheets -->
+
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .bg-body-dark {
+            background-image: url('{{ asset('assets/media/photos/bg-login.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100%;
+            filter: blur(0.1px);
+        }
+    </style>
 </head>
 
 <body>
@@ -53,8 +71,8 @@
                             <div class="py-4 text-center">
                                 <a class="link-fx fw-bold" href="index.html">
                                     <i class="fa fa-fire"></i>
-                                    <span class="fs-4 text-body-color">CMS</span><span class="fs-4">{{
-                                        config('app.name') }}</span>
+                                    <span class="fs-4 text-body-color">CMS</span><span
+                                        class="fs-4">{{ config('app.name') }}</span>
                                 </a>
                                 <h1 class="h3 fw-bold mt-4 mb-2">Welcome to Your Dashboard</h1>
                                 <h2 class="h5 fw-medium text-muted mb-0">It’s a great day today!</h2>

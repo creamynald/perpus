@@ -4,13 +4,13 @@
 <form class="js-validation-signin" action="{{ route('login') }}" method="POST">
     @csrf
     <div class="block block-themed block-rounded block-fx-shadow">
-        <div class="block-header bg-gd-dusk">
-            <h3 class="block-title">Please Sign In</h3>
+        <div class="block-header bg-gd-dusk text-center">
+            <h3 class="block-title">Login</h3>
         </div>
         <div class="block-content">
             <div class="form-floating mb-4">
                 <input type="text" class="form-control" id="email" name="email" placeholder="Enter your username">
-                <label class="form-label" for="email">Email Address</label>
+                <label class="form-label" for="email">Email</label>
             </div>
             <div class="form-floating mb-4">
                 <input type="password" class="form-control" id="password" name="password"
@@ -27,18 +27,15 @@
                 </div>
                 <div class="col-sm-6 text-sm-end push">
                     <button type="submit" class="btn btn-lg btn-alt-primary fw-medium">
-                        Sign In
+                        Login
                     </button>
                 </div>
             </div>
         </div>
         <div class="block-content block-content-full bg-body-light text-center d-flex justify-content-between">
+            <span class="opacity-50 me-1">Don't have account?</span>
             <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block" href="{{ route('register') }}">
-                <i class="fa fa-plus opacity-50 me-1"></i> Create Account
-            </a>
-            <a class="fs-sm fw-medium link-fx text-muted me-2 mb-1 d-inline-block"
-                href="{{ route('password.request') }}">
-                Forgot Your Password?
+                <i class="fa fa-plus opacity-50 me-1"></i> Register
             </a>
         </div>
     </div>
