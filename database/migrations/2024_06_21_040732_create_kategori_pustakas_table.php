@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_kategori_pustaka');
             $table->string('nama_kategori_pustaka');
-            $table->string('gambar_kategori_pustaka');
+            $table->string('gambar_kategori_pustaka')->nullable();
             $table->timestamps();
         });
     }
