@@ -39,7 +39,7 @@
         </li>
         <li class="nav-main-item">
             <a class="nav-main-link {{ request()->segment(3) == 'pustaka' ? 'active' : '' }}"
-                href="{{ route('pustaka.index') }}">
+                href="{{ route('buku.index') }}">
                 <span class="nav-main-link-name">Data Pustaka</span>
             </a>
         </li>

@@ -35,9 +35,9 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <button type="submit" class="btn btn-alt-primary">
+                                <a href="{{ route('buku.create') }}" type="submit" class="btn btn-alt-primary">
                                     <i class="fa fa-plus opacity-50 me-1"></i> Tambah Pustaka
-                                </button>
+                                </a>
                             </div>
                             <div class="col-6 text-end">
                                 <button type="submit" class="btn btn-alt-primary">

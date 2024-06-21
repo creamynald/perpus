@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\permissions\{assignController, roleController, permissionController, userController};
-use App\Http\Controllers\backend\pustaka\{kategoriPustakaController, penerbitController, penulisController};
+use App\Http\Controllers\backend\pustaka\{kategoriPustakaController, penerbitController, penulisController, pustakaController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,9 +23,7 @@ Route::middleware('has.role')->prefix('admin')->group(function () {
         Route::resource('kategori', kategoriPustakaController::class);
         Route::resource('penulis', penulisController::class);
         Route::resource('penerbit', penerbitController::class);
-        Route::get('index', function () {
-            return view('backend.pustaka.buku.index');
-        })->name('pustaka.index');
+        Route::resource('buku', pustakaController::class);
     });
 });
 

@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Pustaka extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'kode_pustaka',
+        'judul_pustaka',
+        'kategori_pustaka_id',
+        'penerbit_id',
+        'penulis_id',
+        'tahun',
+        'gambar_pustaka',
+        'halaman',
+        'dimensi',
+        'stok',
+        'rak'
+    ];
 }
