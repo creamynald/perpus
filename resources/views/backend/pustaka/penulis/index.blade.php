@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title', 'Pustaka')
-@section('subTitle', 'Kategori')
+@section('subTitle', 'Penulis')
 
 @section('content')
     <div class="content">
@@ -13,7 +13,7 @@
                     <small>Table @yield('subTitle')</small>
                 </h3>
 
-                <a href="{{ route('kategori.create') }}" type="button" class="btn-block-option">
+                <a href="{{ route('penulis.create') }}" type="button" class="btn-block-option">
                     <i class="si si-plus"></i> Tambah
                 </a>
             </div>
@@ -24,22 +24,22 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th>Kode</th>
-                            <th>Nama Kategori</th>
+                            <th>Nama Penulis</th>
                             <th class="text-center" style="width: 15%;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kategori as $index => $row)
+                        @foreach ($penulis as $index => $row)
                             <tr>
                                 <td class="text-center">{{ $index + 1 }}</td>
-                                <td class="fw-semibold">{{ $row->kode_kategori_pustaka }}</td>
-                                <td class="fw-semibold">{{ $row->nama_kategori_pustaka }}</td>
+                                <td class="fw-semibold">{{ $row->kode_penulis }}</td>
+                                <td class="fw-semibold">{{ $row->nama_penulis }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('kategori.edit', $row) }}" type="button"
+                                    <a href="{{ route('penulis.edit', $row) }}" type="button"
                                         class="btn btn-sm btn-secondary" title="Edit">
                                         <i class="fa fa-pen"></i>
                                     </a>
-                                    <form action="{{ route('kategori.destroy', $row) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('penulis.destroy', $row) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger" title="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
