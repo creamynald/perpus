@@ -20,14 +20,8 @@
     </a>
     <ul class="nav-main-submenu">
         <li class="nav-main-item">
-            <a class="nav-main-link {{ request()->segment(3) == 'pustaka' ? 'active' : '' }}"
-                href="{{ route('pustaka.index') }}">
-                <span class="nav-main-link-name">Data Pustaka</span>
-            </a>
-        </li>
-        <li class="nav-main-item">
             <a class="nav-main-link {{ request()->segment(3) == 'permissions' ? 'active' : '' }}" href="#">
-                <span class="nav-main-link-name">Data Kategori Pustaka</span>
+                <span class="nav-main-link-name">Data Kategori</span>
             </a>
         </li>
         <li class="nav-main-item">
@@ -38,6 +32,12 @@
         <li class="nav-main-item">
             <a class="nav-main-link {{ request()->segment(3) == 'assign' ? 'active' : '' }}" href="#">
                 <span class="nav-main-link-name">Data Penerbit</span>
+            </a>
+        </li>
+        <li class="nav-main-item">
+            <a class="nav-main-link {{ request()->segment(3) == 'pustaka' ? 'active' : '' }}"
+                href="{{ route('pustaka.index') }}">
+                <span class="nav-main-link-name">Data Pustaka</span>
             </a>
         </li>
     </ul>
