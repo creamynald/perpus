@@ -51,7 +51,6 @@
             background-position: center;
             background-repeat: no-repeat;
             height: 100%;
-            filter: blur(0.1px);
         }
     </style>
 </head>
