@@ -20,17 +20,20 @@
     </a>
     <ul class="nav-main-submenu">
         <li class="nav-main-item">
-            <a class="nav-main-link {{ request()->segment(3) == 'permissions' ? 'active' : '' }}" href="#">
+            <a class="nav-main-link {{ request()->segment(3) == 'kategori' ? 'active' : '' }}"
+                href="{{ route('kategori.index') }}">
                 <span class="nav-main-link-name">Data Kategori</span>
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link {{ request()->segment(3) == 'assignable' ? 'active' : '' }}" href="#">
+            <a class="nav-main-link {{ request()->segment(3) == 'penulis' ? 'active' : '' }}"
+                href="{{ route('penulis.index') }}">
                 <span class="nav-main-link-name">Data Penulis</span>
             </a>
         </li>
         <li class="nav-main-item">
-            <a class="nav-main-link {{ request()->segment(3) == 'assign' ? 'active' : '' }}" href="#">
+            <a class="nav-main-link {{ request()->segment(3) == 'penerbit' ? 'active' : '' }}"
+                href="{{ route('penerbit.index') }}">
                 <span class="nav-main-link-name">Data Penerbit</span>
             </a>
         </li>
