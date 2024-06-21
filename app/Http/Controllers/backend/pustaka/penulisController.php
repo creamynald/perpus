@@ -35,22 +35,22 @@ class penulisController extends Controller
         return redirect()->route('penulis.index');
     }
 
-    public function edit(Penulis $penulis)
+    public function edit(Penulis $penuli)
     {
         return view('backend.pustaka.penulis.edit', [
-            'penulis' => $penulis,
+            'penulis' => $penuli,
             'submit' => 'Update'
         ]);
     }
     
-    public function update(Penulis $penulis)
+    public function update(Penulis $penuli)
     {
         request()->validate([
             'kode_penulis' => 'required',
             'nama_penulis' => 'required',
         ]);
 
-        $penulis->update([
+        $penuli->update([
             'kode_penulis' => request('kode_penulis'),
             'nama_penulis' => request('nama_penulis'),
         ]);
@@ -58,9 +58,9 @@ class penulisController extends Controller
         return redirect()->route('penulis.index');
     }
     
-    public function destroy(Penulis $penulis)
+    public function destroy(Penulis $penuli)
     {
-        $penulis->delete();
+        $penuli->delete();
         return redirect()->route('penulis.index');
     }
 }
