@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('kode_pustaka');
             $table->string('judul_pustaka');
-            $table->integer('kategori_pustaka');
-            $table->integer('penerbit');
-            $table->integer('penulis');
+            $table->integer('kategori_pustaka_id');
+            $table->integer('penerbit_id');
+            $table->integer('penulis_id');
             $table->string('tahun');
             $table->string('gambar_pustaka')->nullable();
             $table->integer('halaman');
