@@ -6,11 +6,10 @@
             <span class="smini-visible fw-bold tracking-wide fs-lg">
                 c<span class="text-primary">m</span>s
             </span>
-            <a class="link-fx fw-bold tracking-wide mx-auto" href="{{ config('app.url') }}">
+            <a class="link-fx fw-bold tracking-wide mx-auto" href="{{ route('dashboard') }}">
                 <span class="smini-hidden">
-                    <i class="fa fa-fire text-primary"></i>
-                    <span class="fs-4 text-dual">CMS</span><span class="fs-4 text-primary">{{ config('app.name')
-                        }}</span>
+                    <i class="fa fa-book text-primary"></i>
+                    <span class="fs-4 text-dual">PERPUS </span><span class="fs-4 text-primary">40</span>
                 </span>
             </a>
         </div>

@@ -30,20 +30,9 @@
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0"
                 aria-labelledby="page-header-user-dropdown">
                 <div class="p-2">
-                    <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
-                        href="be_pages_generic_profile.html">
-                        <span>Profile</span>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="#">
+                        <span>Profil</span>
                         <i class="fa fa-fw fa-user opacity-25"></i>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between"
-                        href="be_pages_generic_inbox.html">
-                        <span>Inbox</span>
-                        <i class="fa fa-fw fa-envelope-open opacity-25"></i>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
-                        href="be_pages_generic_invoice.html">
-                        <span>Invoices</span>
-                        <i class="fa fa-fw fa-file opacity-25"></i>
                     </a>
                     <div class="dropdown-divider"></div>
 
@@ -51,16 +40,17 @@
                     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                     <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
                         href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
-                        <span>Settings</span>
+                        <span>Pengaturan</span>
                         <i class="fa fa-fw fa-wrench opacity-25"></i>
                     </a>
                     <!-- END Side Overlay -->
 
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
-                        href="{{ route('logout') }}" onclick="event.preventDefault();
+                        href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
-                        <span>Sign Out</span>
+                        <span>Keluar</span>
                         <i class="fa fa-fw fa-sign-out-alt opacity-25"></i>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

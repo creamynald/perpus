@@ -68,13 +68,13 @@
                         <div class="content content-full overflow-hidden">
                             <!-- Header -->
                             <div class="py-4 text-center">
-                                <a class="link-fx fw-bold" href="index.html">
-                                    <i class="fa fa-fire"></i>
-                                    <span class="fs-4 text-body-color">CMS</span><span
-                                        class="fs-4">{{ config('app.name') }}</span>
+                                <a class="link-fx fw-bold" href="#">
+                                    <i class="fa fa-book"></i>
+                                    <span class="fs-4 text-body-color">PERPUSTAKAAN </span><span class="fs-4">SDN 40
+                                        BENGKALIS</span>
                                 </a>
-                                <h1 class="h3 fw-bold mt-4 mb-2">Welcome to Your Dashboard</h1>
-                                <h2 class="h5 fw-medium text-muted mb-0">It’s a great day today!</h2>
+                                <h1 class="h3 fw-bold mt-4 mb-2">Selamat datang di Aplikasi</h1>
+                                <h2 class="h5 fw-medium text-muted mb-0">Perpustakaan SDN 40 Bengkalis</h2>
                             </div>
                             <!-- END Header -->
 
