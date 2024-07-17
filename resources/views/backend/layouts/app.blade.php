@@ -7,15 +7,14 @@
 
     <title>PERPUS40 - SDN 40 KAB. BENGKALIS</title>
 
-    <meta name="description" content="PERPUS40 - SDN 40 KAB. BENGKALIS created by pixelcave and published on Themeforest">
+    <meta name="description" content="PERPUS40 - SDN 40 KAB. BENGKALIS">
     <meta name="author" content="PERPUS40">
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Open Graph Meta -->
     <meta property="og:title" content="PERPUS40 - SDN 40 KAB. BENGKALIS">
     <meta property="og:site_name" content="PERPUS40">
-    <meta property="og:description"
-        content="PERPUS40 - SDN 40 KAB. BENGKALIS created by pixelcave and published on Themeforest">
+    <meta property="og:description" content="PERPUS40 - SDN 40 KAB. BENGKALIS">
     <meta property="og:type" content="website">
     <meta property="og:url" content="">
     <meta property="og:image" content="">
@@ -32,6 +31,8 @@
     <!-- Stylesheets -->
     @stack('css')
     <!-- Codebase framework -->
+    <link rel="stylesheet"
+        href="{{ asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
     <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/codebase.min.css') }}">
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -118,14 +119,7 @@
     </div>
     <!-- END Page Container -->
 
-    <!--
-        Codebase JS
-
-        Core libraries and functionality
-        webpack is putting everything together at assets/_js/main/app.js
-    -->
     <script src="{{ asset('assets/js/codebase.app.min.js') }}"></script>
-
     @stack('js')
 </body>
 

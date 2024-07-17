@@ -86,24 +86,54 @@ class PermissionSeeder extends Seeder
         $siswa = \App\Models\User::factory()->create([
             'name' => 'Siswa',
             'email' => 'siswa@perpus.test',
+            'kelas' => '4',
+            'tempat_lahir' => 'Bengkalis',
+            'tgl_lahir' => '2003-01-01',
+            'jenis_kelamin' => 'L',
+            'status' => 'aktif',
+            'no_telp' => '081234567890',
+            'alamat' => 'Jl. Jalan',
+            'foto' => 'siswa.jpg',
         ]);
         $siswa->assignRole($role1);
 
         $operator = \App\Models\User::factory()->create([
             'name' => 'Admin Perpus',
             'email' => 'admin@perpus.test',
+            'tempat_lahir' => 'Bengkalis',
+            'tgl_lahir' => '2000-01-01',
+            'jenis_kelamin' => 'L',
+            'status' => 'aktif',
+            'no_telp' => '081234567890',
+            'alamat' => 'Jl. Jalan',
+            'foto' => 'admin.jpg',
+
         ]);
         $operator->assignRole($role2);
 
         $kepsek = \App\Models\User::factory()->create([
             'name' => 'Kepala Sekolah',
             'email' => 'kepsek@perpus.test',
+            'tempat_lahir' => 'Bengkalis',
+            'tgl_lahir' => '1990-01-01',
+            'jenis_kelamin' => 'L',
+            'status' => 'aktif',
+            'no_telp' => '081234567890',
+            'alamat' => 'Jl. Jalan',
+            'foto' => 'kepsek.jpg',
         ]);
         $kepsek->assignRole($role3);
 
         $superadmin = \App\Models\User::factory()->create([
             'name' => 'Super Admin',
             'email' => 'superadmin@perpus.test',
+            'tempat_lahir' => 'Bengkalis',
+            'tgl_lahir' => '1990-01-01',
+            'jenis_kelamin' => 'L',
+            'status' => 'aktif',
+            'no_telp' => '081234567890',
+            'alamat' => 'Jl. Jalan',
+            'foto' => 'superadmin.jpg',
         ]);
         $superadmin->assignRole($role4);
     }
