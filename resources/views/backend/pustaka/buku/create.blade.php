@@ -87,13 +87,6 @@
                                 </div>
                                 <div class="col">
                                     <div class="mb-4">
-                                        <label class="form-label fw-semibold" for="dimensi">Dimensi</label>
-                                        <input type="text" class="form-control" id="dimensi" name="dimensi"
-                                            placeholder="Dimensi">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="mb-4">
                                         <label class="form-label fw-semibold" for="stok">Stok</label>
                                         <input type="text" class="form-control" id="stok" name="stok"
                                             placeholder="Stok / Jumlah Pustaka">

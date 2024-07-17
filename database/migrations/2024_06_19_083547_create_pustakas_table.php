@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('tahun');
             $table->string('gambar_pustaka')->nullable();
             $table->integer('halaman');
-            $table->string('dimensi');
             $table->integer('stok');
             $table->string('rak');
             $table->timestamps();

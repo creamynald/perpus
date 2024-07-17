@@ -33,7 +33,6 @@ class pustakaController extends Controller
             'tahun' => 'required',
             'gambar_pustaka' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'halaman' => 'required',
-            'dimensi' => 'required',
             'stok' => 'required',
             'rak' => 'required',
         ]);
@@ -51,7 +50,6 @@ class pustakaController extends Controller
         $pustaka->tahun = $request->tahun;
         $pustaka->gambar_pustaka = $nama_gambar;
         $pustaka->halaman = $request->halaman;
-        $pustaka->dimensi = $request->dimensi;
         $pustaka->stok = $request->stok;
         $pustaka->rak = $request->rak;
         $pustaka->save();

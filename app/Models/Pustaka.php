@@ -18,7 +18,6 @@ class Pustaka extends Model
         'tahun',
         'gambar_pustaka',
         'halaman',
-        'dimensi',
         'stok',
         'rak'
     ];
