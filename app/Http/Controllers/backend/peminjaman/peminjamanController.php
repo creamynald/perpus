@@ -12,11 +12,19 @@ class peminjamanController extends Controller
 {
     public function index()
     {
-        return view('backend.peminjaman.index', [
-            'dataPeminjaman' => Peminjaman::where('user_id', auth()->user()->id)
-                ->latest()
-                ->get(),
-        ]);
+        if (
+            auth()
+                ->user()
+                ->hasRole(['admin', 'super admin'])
+        ) {
+            return view('backend.peminjaman.index', [
+                'dataPeminjaman' => Peminjaman::latest()->get(),
+            ]);
+        } else {
+            return view('backend.peminjaman.index', [
+                'dataPeminjaman' => Peminjaman::where('user_id', auth()->id())->latest()->get(),
+            ]);
+        }
     }
 
     public function create()
