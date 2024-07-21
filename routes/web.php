@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\peminjaman\peminjamanController;
 use App\Http\Controllers\backend\pengaturan\anggotaController;
 use App\Http\Controllers\backend\pengaturan\pengaturanAplikasiController;
 use App\Http\Controllers\backend\permissions\{assignController, roleController, permissionController, userController};
@@ -25,12 +26,16 @@ Route::middleware('has.role')
                 Route::resource('assignable', assignController::class);
                 Route::resource('assign/user', userController::class);
             });
+        Route::prefix('peminjaman')->group(function () {
+            Route::resource('pinjam-buku', peminjamanController::class);
+        });
         Route::prefix('pustaka')->group(function () {
             Route::resource('kategori', kategoriPustakaController::class);
             Route::resource('penulis', penulisController::class);
             Route::resource('penerbit', penerbitController::class);
             Route::resource('buku', pustakaController::class);
             Route::get('/buku/search', [PustakaController::class, 'search'])->name('buku.search');
+            Route::get('/pinjam-buku/{id}', [PustakaController::class, 'pinjam'])->name('pinjam');
         });
         Route::prefix('pengaturan')->group(function () {
             Route::resource('anggota', anggotaController::class);

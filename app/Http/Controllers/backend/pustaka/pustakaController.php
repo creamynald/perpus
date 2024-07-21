@@ -202,4 +202,13 @@ class pustakaController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
+    // untuk pinjam
+
+    public function pinjam($id)
+    {
+        return view('backend.peminjaman.form', [
+            'pinjamBuku' => Pustaka::findOrFail($id),
+        ]);
+    }
 }

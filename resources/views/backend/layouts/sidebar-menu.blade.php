@@ -1,7 +1,7 @@
 <li class="nav-main-heading">Menu</li>
 
 <li class="nav-main-item">
-    <a class="nav-main-link" href="#">
+    <a class="nav-main-link {{ request()->segment(3) == 'pinjam-buku' ? 'active' : '' }}" href="{{ route('pinjam-buku.index') }}">
         <i class="nav-main-link-icon fa fa-list"></i>
         <span class="nav-main-link-name">Peminjaman</span>
     </a>
