@@ -36,9 +36,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="{{ route('buku.create') }}" class="btn btn-alt-primary">
-                                        <i class="fa fa-plus opacity-50 me-1"></i> Tambah Pustaka
-                                    </a>
+                                    @role(['admin', 'super admin'])
+                                        <a href="{{ route('buku.create') }}" class="btn btn-alt-primary">
+                                            <i class="fa fa-plus opacity-50 me-1"></i> Tambah Pustaka
+                                        </a>
+                                    @endrole
                                 </div>
                                 <div class="col-6 text-end">
                                     <button type="submit" class="btn btn-alt-primary">
