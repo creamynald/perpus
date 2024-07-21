@@ -30,6 +30,7 @@ Route::middleware('has.role')
             Route::resource('penulis', penulisController::class);
             Route::resource('penerbit', penerbitController::class);
             Route::resource('buku', pustakaController::class);
+            Route::get('/buku/search', [PustakaController::class, 'search'])->name('buku.search');
         });
         Route::prefix('pengaturan')->group(function () {
             Route::resource('anggota', anggotaController::class);
@@ -37,6 +38,10 @@ Route::middleware('has.role')
         });
     });
 
+// debug only
+Route::get('/routes', function () {
+    return \Illuminate\Support\Facades\Route::getRoutes();
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
