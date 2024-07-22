@@ -30,6 +30,7 @@
                             <th>Nama Anggota</th>
                             <th>Kelas</th>
                             <th>Judul Pustaka</th>
+                            <th class="text-center">Status</th>
                             <th class="text-center" style="width: 15%;">Aksi</th>
                         </tr>
                     </thead>
@@ -45,6 +46,17 @@
                                     {{ $row->pustaka->judul_pustaka }}
                                     <span
                                         class="badge bg-danger">{{ $row->pustaka->kategori->nama_kategori_pustaka }}</span>
+                                </td>
+                                <td class="text-center">
+                                    @if ($row->status == 'diajukan')
+                                        <span class="badge bg-warning">Diajukan</span>
+                                    @elseif($row->status == 'dipinjam')
+                                        <span class="badge bg-success">Dipinjam</span>
+                                    @elseif($row->status == 'dikembalikan')
+                                        <span class="badge bg-success">Dikembalikan</span>
+                                    @else
+                                        <span class="badge bg-danger">Dibatalkan</span>
+                                    @endif
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('pinjam-buku.edit', $row->id) }}" class="btn btn-sm btn-warning">
