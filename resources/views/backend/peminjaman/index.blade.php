@@ -17,6 +17,10 @@
                     <a href="{{ route('pinjam-buku.create') }}" type="button" class="btn-block-option">
                         <i class="si si-plus"></i> Tambah
                     </a>
+                    @elserole('siswa')
+                    <a href="{{ route('pinjam-buku.create') }}" type="button" class="btn-block-option">
+                        <i class="si si-plus"></i> Pinjam Buku
+                    </a>
                 @endrole
             </div>
             <div class="block-content block-content-full">

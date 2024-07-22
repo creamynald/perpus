@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->date('tgl_lahir');
             $table->string('foto');
             $table->string('kelas')->nullable();
+            $table->integer('point')->default(0)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

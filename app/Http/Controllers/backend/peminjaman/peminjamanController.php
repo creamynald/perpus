@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class peminjamanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:siswa|admin|super admin');
+    }
     public function index()
     {
         if (
@@ -29,8 +33,18 @@ class peminjamanController extends Controller
 
     public function create()
     {
+        $currentUser = auth()->user();
+
+        // Jika pengguna adalah 'siswa', ambil hanya data mereka
+        if ($currentUser->hasRole('siswa')) {
+            $dataSiswa = User::where('id', $currentUser->id)->get();
+        } else {
+            // Jika pengguna adalah 'admin' atau 'super admin', ambil semua siswa
+            $dataSiswa = User::role('siswa')->orderBy('name', 'asc')->get();
+        }
+
         return view('backend.peminjaman.create', [
-            'dataSiswa' => User::role('siswa')->orderBy('name', 'asc')->get(),
+            'dataSiswa' => $dataSiswa,
             'dataBuku' => Pustaka::orderBy('judul_pustaka', 'asc')->get(),
         ]);
     }
@@ -64,6 +78,9 @@ class peminjamanController extends Controller
             'stok' => $cekStok->stok - 1,
         ]);
 
+        // Tentukan status berdasarkan peran pengguna
+        $status = auth()->user()->hasRole('siswa') ? 'diajukan' : 'dipinjam';
+
         // generate kode peminjaman
         $kodePeminjaman = 'PM' . date('Ymd') . rand(100, 999);
 
@@ -73,7 +90,7 @@ class peminjamanController extends Controller
             'pustaka_id' => $request->pustaka_id,
             'tanggal_pinjam' => $request->tanggal_pinjam,
             'tanggal_kembali' => $request->tanggal_kembali,
-            'status' => 'dipinjam',
+            'status' => $status,
         ]);
 
         return redirect()->route('pinjam-buku.index')->with('success', 'Data peminjaman berhasil ditambahkan');
