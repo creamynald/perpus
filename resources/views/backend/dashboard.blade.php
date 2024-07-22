@@ -15,7 +15,7 @@
                                     <i class="fa fa-exchange fa-2x opacity-25"></i>
                                 </div>
                                 <div class="text-end">
-                                    <div class="fs-3 fw-semibold">1500</div>
+                                    <div class="fs-3 fw-semibold">{{ $totalPeminjaman }}</div>
                                     <div class="fs-sm fw-semibold text-uppercase text-muted">Total Peminjaman</div>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                                     <i class="fa fa-users fa-2x opacity-25"></i>
                                 </div>
                                 <div class="text-end">
-                                    <div class="fs-3 fw-semibold">$780</div>
+                                    <div class="fs-3 fw-semibold">{{ $totalAnggota }}</div>
                                     <div class="fs-sm fw-semibold text-uppercase text-muted">Jumlah Anggota</div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                     <i class="fa fa-book fa-2x opacity-25"></i>
                                 </div>
                                 <div class="text-end">
-                                    <div class="fs-3 fw-semibold">15</div>
+                                    <div class="fs-3 fw-semibold">{{ $totalPustaka }}</div>
                                     <div class="fs-sm fw-semibold text-uppercase text-muted">Jumlah Pustaka</div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                     <i class="fa fa-rupiah-sign fa-2x opacity-25"></i>
                                 </div>
                                 <div class="text-end">
-                                    <div class="fs-3 fw-semibold">4252</div>
+                                    <div class="fs-3 fw-semibold">{{ $totalDendaNonMoneter }}</div>
                                     <div class="fs-sm fw-semibold text-uppercase text-muted">Denda Non-Moneter</div>
                                 </div>
                             </div>

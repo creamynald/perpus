@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\dashboardController;
 use App\Http\Controllers\backend\peminjaman\peminjamanController;
 use App\Http\Controllers\backend\pengaturan\anggotaController;
 use App\Http\Controllers\backend\pengaturan\pengaturanAplikasiController;
@@ -15,9 +16,7 @@ Route::get('/', function () {
 Route::middleware('has.role')
     ->prefix('admin')
     ->group(function () {
-        Route::get('dashboard', function () {
-            return view('backend.dashboard');
-        })->name('dashboard');
+        Route::get('dashboard', [dashboardController::class, 'index'])->name('dashboard');
         Route::prefix('role-and-permission')
             ->middleware('permission:permission')
             ->group(function () {
