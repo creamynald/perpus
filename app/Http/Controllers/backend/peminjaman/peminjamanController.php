@@ -184,4 +184,31 @@ class peminjamanController extends Controller
 
         return redirect()->route('pinjam-buku.index')->with('success', 'Peminjaman berhasil diverifikasi');
     }
+
+    public function verifikasiPengembalian($id)
+    {
+        $peminjaman = Peminjaman::find($id);
+
+        if (!$peminjaman || $peminjaman->status != 'dipinjam') {
+            return redirect()->route('pinjam-buku.index')->with('error', 'Peminjaman tidak valid untuk diverifikasi pengembaliannya');
+        }
+
+        $peminjaman->update([
+            'status' => 'dikembalikan',
+        ]);
+
+        // Tambah poin ke user
+        $user = User::find($peminjaman->user_id);
+        $user->update([
+            'point' => $user->point + 5,
+        ]);
+
+        // Tambah stok buku
+        $pustaka = Pustaka::find($peminjaman->pustaka_id);
+        $pustaka->update([
+            'stok' => $pustaka->stok + 1,
+        ]);
+
+        return redirect()->route('pinjam-buku.index')->with('success', 'Pengembalian buku berhasil diverifikasi');
+    }
 }

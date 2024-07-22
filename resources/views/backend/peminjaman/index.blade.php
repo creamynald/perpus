@@ -72,6 +72,14 @@
                                                     <i class="fa fa-check"></i>
                                                 </button>
                                             </form>
+                                        @elseif ($row->status == 'dipinjam')
+                                            <form action="{{ route('pinjam-buku.verifikasi-pengembalian', $row->id) }}"
+                                                method="POST" style="display: inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-primary">
+                                                    <i class="fa fa-undo"></i>
+                                                </button>
+                                            </form>
                                         @endif
                                     @endrole
                                     <a href="{{ route('pinjam-buku.edit', $row->id) }}" class="btn btn-sm btn-warning">
@@ -86,8 +94,8 @@
                                         </button>
                                     </form>
                                 </td>
-                            </tr>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>

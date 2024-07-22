@@ -17,6 +17,7 @@ class dashboardController extends Controller
             'totalAnggota' => User::role('siswa')->count(),
             'totalPustaka' => Pustaka::count(),
             'totalDendaNonMoneter' => Peminjaman::where('denda_non_moneter', '!=', 0)->count(),
+            'pointSiswa' => User::role('siswa')->sum('point'),
         ]);
     }
 }

@@ -28,6 +28,7 @@ Route::middleware('has.role')
         Route::prefix('peminjaman')->group(function () {
             Route::resource('pinjam-buku', peminjamanController::class);
             Route::post('pinjam-buku/verifikasi/{id}', [peminjamanController::class, 'verifikasi'])->name('pinjam-buku.verifikasi');
+            Route::post('pinjam-buku/verifikasi-pengembalian/{id}', [peminjamanController::class, 'verifikasiPengembalian'])->name('pinjam-buku.verifikasi-pengembalian');
         });
         Route::prefix('pustaka')->group(function () {
             Route::resource('kategori', kategoriPustakaController::class);
