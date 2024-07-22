@@ -63,9 +63,19 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
+                                    @role(['admin', 'super admin'])
+                                        @if ($row->status == 'diajukan')
+                                            <form action="{{ route('pinjam-buku.verifikasi', $row->id) }}" method="POST"
+                                                style="display: inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-success">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+                                    @endrole
                                     <a href="{{ route('pinjam-buku.edit', $row->id) }}" class="btn btn-sm btn-warning">
-                                        <i class="fa fa-edit
-                                        "></i>
+                                        <i class="fa fa-edit"></i>
                                     </a>
                                     <form action="{{ route('pinjam-buku.destroy', $row->id) }}" method="POST"
                                         style="display: inline">
@@ -76,6 +86,7 @@
                                         </button>
                                     </form>
                                 </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

@@ -14,6 +14,7 @@ class peminjamanController extends Controller
     {
         $this->middleware('role:siswa|admin|super admin');
     }
+
     public function index()
     {
         if (
@@ -35,11 +36,9 @@ class peminjamanController extends Controller
     {
         $currentUser = auth()->user();
 
-        // Jika pengguna adalah 'siswa', ambil hanya data mereka
         if ($currentUser->hasRole('siswa')) {
             $dataSiswa = User::where('id', $currentUser->id)->get();
         } else {
-            // Jika pengguna adalah 'admin' atau 'super admin', ambil semua siswa
             $dataSiswa = User::role('siswa')->orderBy('name', 'asc')->get();
         }
 
@@ -66,22 +65,18 @@ class peminjamanController extends Controller
             ],
         );
 
-        // Cek apakah stok buku masih tersedia
         $cekStok = Pustaka::find($request->pustaka_id);
 
         if ($cekStok->stok == 0) {
             return redirect()->back()->with('error', 'Stok buku sudah habis');
         }
 
-        // Kurangi stok buku
         $cekStok->update([
             'stok' => $cekStok->stok - 1,
         ]);
 
-        // Tentukan status berdasarkan peran pengguna
         $status = auth()->user()->hasRole('siswa') ? 'diajukan' : 'dipinjam';
 
-        // generate kode peminjaman
         $kodePeminjaman = 'PM' . date('Ymd') . rand(100, 999);
 
         Peminjaman::create([
@@ -111,14 +106,14 @@ class peminjamanController extends Controller
             [
                 'user_id' => 'required',
                 'pustaka_id' => 'required',
-                'tanggal_pinjam' => 'required|date',
-                'tanggal_kembali' => 'required|date',
+                'tanggal_pinjam' => 'date',
+                'tanggal_kembali' => 'date',
             ],
             [
                 'user_id.required' => 'Siswa harus diisi',
                 'pustaka_id.required' => 'Buku harus diisi',
-                'tanggal_pinjam.required' => 'Tanggal pinjam harus diisi',
-                'tanggal_kembali.required' => 'Tanggal kembali harus diisi',
+                'tanggal_pinjam.date' => 'Tanggal pinjam harus diisi',
+                'tanggal_kembali.date' => 'Tanggal kembali harus diisi',
             ],
         );
 
@@ -128,13 +123,11 @@ class peminjamanController extends Controller
             return redirect()->back()->with('error', 'Peminjaman tidak ditemukan');
         }
 
-        // Add stock to the old book
         $oldBook = Pustaka::find($peminjaman->pustaka_id);
         if ($oldBook) {
             $oldBook->update(['stok' => $oldBook->stok + 1]);
         }
 
-        // Reduce stock of the new book
         $newBook = Pustaka::find($request->pustaka_id);
         if (!$newBook) {
             return redirect()->back()->with('error', 'Buku tidak ditemukan');
@@ -146,7 +139,6 @@ class peminjamanController extends Controller
 
         $newBook->update(['stok' => $newBook->stok - 1]);
 
-        // Update the peminjaman record
         $peminjaman->update([
             'user_id' => $request->user_id,
             'pustaka_id' => $request->pustaka_id,
@@ -162,7 +154,6 @@ class peminjamanController extends Controller
     {
         $peminjaman = Peminjaman::find($id);
 
-        // Tambah stok buku
         $cekStok = Pustaka::find($peminjaman->pustaka_id);
         $cekStok->update([
             'stok' => $cekStok->stok + 1,
@@ -171,5 +162,26 @@ class peminjamanController extends Controller
         $peminjaman->delete();
 
         return redirect()->route('pinjam-buku.index')->with('success', 'Data peminjaman berhasil dihapus');
+    }
+
+    public function verifikasi($id)
+    {
+        $peminjaman = Peminjaman::find($id);
+
+        if (!$peminjaman || $peminjaman->status != 'diajukan') {
+            return redirect()->route('pinjam-buku.index')->with('error', 'Peminjaman tidak valid untuk diverifikasi');
+        }
+
+        $peminjaman->update([
+            'status' => 'dipinjam',
+        ]);
+
+        // user point
+        $user = User::find($peminjaman->user_id);
+        $user->update([
+            'point' => $user->point + 1,
+        ]);
+
+        return redirect()->route('pinjam-buku.index')->with('success', 'Peminjaman berhasil diverifikasi');
     }
 }
