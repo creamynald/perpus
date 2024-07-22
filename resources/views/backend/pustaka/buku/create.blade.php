@@ -26,7 +26,7 @@
                                     <div class="mb-4">
                                         <label class="form-label" for="kategori_pustaka_id">Kategori</label>
                                         <select class="form-select" id="kategori_pustaka_id" name="kategori_pustaka_id">
-                                            <option selected>...</option>
+                                            <option selected>pilih kategori</option>
                                             @foreach ($kategori as $row)
                                                 <option value="{{ $row->id }}"><span
                                                         class="opacity-50">{{ $row->kode_kategori_pustaka }}</span> -
@@ -42,7 +42,7 @@
                                     <div class="mb-4">
                                         <label class="form-label" for="penulis_id">Penulis</label>
                                         <select class="form-select" id="penulis_id" name="penulis_id">
-                                            <option selected>...</option>
+                                            <option selected>pilih penulis</option>
                                             @foreach ($penulis as $row)
                                                 <option value="{{ $row->id }}"><span
                                                         class="opacity-50">{{ $row->kode_penulis }}</span> -
@@ -58,7 +58,7 @@
                                     <div class="mb-4">
                                         <label class="form-label" for="penerbit_id">Penerbit</label>
                                         <select class="form-select" id="penerbit_id" name="penerbit_id">
-                                            <option selected>...</option>
+                                            <option selected>pilih penerbit</option>
                                             @foreach ($penerbit as $row)
                                                 <option value="{{ $row->id }}"><span
                                                         class="opacity-50">{{ $row->kode_penerbit }}</span> -
@@ -138,7 +138,8 @@
                                 <div class="col-4">
                                     <div class="mb-4">
                                         <label class="form-label" for="gambar_pustaka">Gambar Pustaka / Sampul</label>
-                                        <input class="form-control" type="file" id="gambar_pustaka" name="gambar_pustaka">
+                                        <input class="form-control" type="file" id="gambar_pustaka"
+                                            name="gambar_pustaka">
                                         @error('gambar_pustaka')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror

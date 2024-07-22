@@ -39,10 +39,12 @@
                                         class="btn btn-sm btn-secondary" title="Edit">
                                         <i class="fa fa-pen"></i>
                                     </a>
-                                    <form action="{{ route('penulis.destroy', $row) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('penulis.destroy', $row) }}" method="POST"
+                                        style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" title="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
+                                        <button type="submit" class="btn btn-sm btn-danger" title="Delete"
+                                            onclick="return confirm('Are you sure you want to delete this item?');">
                                             <i class="fa fa-trash-can"></i>
                                         </button>
                                     </form>

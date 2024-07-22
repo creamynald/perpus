@@ -14,23 +14,41 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="mb-4">
-                                        <label class="form-label" for="kategori">Kategori</label>
-                                        <input type="text" class="form-control form-control-lg" id="kategori"
-                                            name="kategori" value="{{ request('kategori') }}">
+                                        <label class="form-label" for="kategori_pustaka_id">Kategori</label>
+                                        <select class="form-select" id="kategori_pustaka_id" name="kategori">
+                                            <option selected>pilih kategori</option>
+                                            @foreach ($kategori as $row)
+                                                <option value="{{ $row->id }}">
+                                                    {{ $row->nama_kategori_pustaka }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="mb-4">
-                                        <label class="form-label" for="penulis">Penulis</label>
-                                        <input type="text" class="form-control form-control-lg" id="penulis"
-                                            name="penulis" value="{{ request('penulis') }}">
+                                        <label class="form-label" for="penulis_id">Penulis</label>
+                                        <select class="form-select" id="penulis_id" name="penulis">
+                                            <option selected>pilih penulis</option>
+                                            @foreach ($penulis as $row)
+                                                <option value="{{ $row->id }}">
+                                                    {{ $row->nama_penulis }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="mb-4">
-                                        <label class="form-label" for="penerbit">Penerbit</label>
-                                        <input type="text" class="form-control form-control-lg" id="penerbit"
-                                            name="penerbit" value="{{ request('penerbit') }}">
+                                        <label class="form-label" for="penerbit_id">Penerbit</label>
+                                        <select class="form-select" id="penerbit_id" name="penerbit">
+                                            <option selected>pilih penerbit</option>
+                                            @foreach ($penerbit as $row)
+                                                <option value="{{ $row->id }}">
+                                                    {{ $row->nama_penerbit }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -105,9 +123,9 @@
                 </div>
                 <!-- END Buku -->
             @empty
-                <div class="col-md-3">
+                <div class="col-md">
                     <div class="block block-rounded ribbon ribbon-modern ribbon-danger">
-                        <div class="ribbon-box-skew-y-1 text-uppercase">
+                        <div class="ribbon-box-skew-y-1 text-uppercase text-center">
                             Tidak Ada Data
                         </div>
                     </div>

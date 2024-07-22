@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->integer('pustaka_id');
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
-            $table->enum('status', ['dipinjam', 'dikembalikan']);
+            $table->enum('status', ['diajukan', 'dipinjam', 'dikembalikan', 'dibatalkan']);
             $table->enum('jenis_denda', ['harian', 'mingguan', 'bulanan']);
             $table->integer('denda_non_moneter')->nullable();
             $table->integer('user_id');

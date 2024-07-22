@@ -13,6 +13,9 @@ class pustakaController extends Controller
     {
         return view('backend.pustaka.buku.index', [
             'pustaka' => Pustaka::latest()->get(),
+            'kategori' => kategoriPustaka::all(),
+            'penulis' => Penulis::all(),
+            'penerbit' => Penerbit::all(),
         ]);
     }
 
