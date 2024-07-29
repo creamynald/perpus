@@ -15,18 +15,18 @@ class kategoriSeeder extends Seeder
     {
         kategoriPustaka::insert([
             [
-                'kode_kategori_pustaka' => 'KP-DEMO-001',
-                'nama_kategori_pustaka' => 'Fiksi',
+                'kode_kategori_pustaka' => 'TP',
+                'nama_kategori_pustaka' => 'Tema/Pelajaran',
             ],
 
             [
-                'kode_kategori_pustaka' => 'KP-DEMO-002',
-                'nama_kategori_pustaka' => 'Filsafat',
+                'kode_kategori_pustaka' => 'BC',
+                'nama_kategori_pustaka' => 'Buku Cerita',
             ],
 
             [
-                'kode_kategori_pustaka' => 'KP-DEMO-003',
-                'nama_kategori_pustaka' => 'Sejarah',
+                'kode_kategori_pustaka' => 'BU',
+                'nama_kategori_pustaka' => 'Buku Umum',
             ],
 
             [
