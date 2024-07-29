@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend\peminjaman;
 
 use App\Http\Controllers\Controller;
 use App\Models\Peminjaman;
+use App\Models\PengaturanAplikasi;
 use App\Models\Pustaka;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -227,9 +228,10 @@ class peminjamanController extends Controller
 
     public function invoice($id)
     {
-        $peminjaman = Peminjaman::with(['user', 'pustaka'])->findOrFail($id);
-
-        $pdf = Pdf::loadView('backend.peminjaman.invoice', compact('peminjaman'));
+        $pdf = Pdf::loadView('backend.peminjaman.invoice', [
+            'peminjaman' => Peminjaman::with(['user', 'pustaka'])->findOrFail($id),
+            'kop_surat' => PengaturanAplikasi::first(),
+        ]);
 
         return $pdf->download('invoice.pdf');
     }

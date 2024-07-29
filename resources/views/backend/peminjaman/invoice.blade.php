@@ -54,6 +54,30 @@
             margin-top: 20px;
             font-size: 12px;
         }
+
+        .label {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 10px;
+            border: 2px solid #000;
+            margin-top: 20px;
+            display: inline-block;
+            text-align: right;
+            margin-right: 0;
+        }
+
+        .solid-line {
+            border: 0;
+            border-top: 2px solid #000;
+            margin: 20px 0;
+        }
+
+        .dashed-line {
+            border: 0;
+            border-top: 2px dashed #000;
+            margin: 20px 0;
+        }
     </style>
 </head>
 
@@ -61,14 +85,42 @@
     <div class="header">
         <!-- Tambahkan logo di sini -->
         <img src="{{ public_path('assets/media/avatars/logo.png') }}" alt="Tut Wuri Handayani">
-        <h1>SDN Negeri 40 Bengkalis</h1>
-        <h2>Jalan Awang Mahmuda</h2>
-        <p>No Telp: 021-672561</p>
-        <p>Email: sdn40bengkalis@gmail.com</p>
-        <hr>
+        <h1>{{ $kop_surat->nama_aplikasi }}</h1>
+        <h2>{{ $kop_surat->alamat }}</h2>
+        <p>Email: {{ $kop_surat->email }} - Telp: {{ $kop_surat->no_telp }} - Website: {{ $kop_surat->website }}</p>
+        <hr class="solid-line">
         <h3>Invoice Peminjaman Buku</h3>
     </div>
 
+    <div class="label">Siswa</div>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Kode Peminjaman</th>
+                <th>Nama Siswa</th>
+                <th>Judul Buku</th>
+                <th>Tanggal Pinjam</th>
+                <th>Tanggal Kembali</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>{{ $peminjaman->kode_peminjaman }}</td>
+                <td>{{ $peminjaman->user->name }}</td>
+                <td>{{ $peminjaman->pustaka->judul_pustaka }}</td>
+                <td>{{ $peminjaman->tanggal_pinjam }}</td>
+                <td>{{ $peminjaman->tanggal_kembali }}</td>
+                <td>{{ $peminjaman->status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr class="dashed-line">
+
+    <div class="label">Petugas</div>
     <table>
         <thead>
             <tr>
