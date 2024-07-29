@@ -72,6 +72,18 @@ class peminjamanController extends Controller
             return redirect()->back()->with('error', 'Stok buku sudah habis');
         }
 
+        // Check if the user is a student
+        if (auth()->user()->hasRole('siswa')) {
+            $totalPeminjaman = Peminjaman::where('user_id', $request->user_id)
+                ->whereIn('status', ['diajukan', 'dipinjam'])
+                ->count();
+
+            if ($totalPeminjaman >= 3) {
+                return redirect()->back()->with('error', 'Siswa hanya diperbolehkan meminjam maksimal 3 buku');
+            }
+        }
+
+        // Update the stock of the book
         $cekStok->update([
             'stok' => $cekStok->stok - 1,
         ]);
@@ -216,7 +228,9 @@ class peminjamanController extends Controller
     public function invoice($id)
     {
         $peminjaman = Peminjaman::with(['user', 'pustaka'])->findOrFail($id);
+
         $pdf = Pdf::loadView('backend.peminjaman.invoice', compact('peminjaman'));
-        return $pdf->download('invoice_peminjaman.pdf');
+
+        return $pdf->download('invoice.pdf');
     }
 }

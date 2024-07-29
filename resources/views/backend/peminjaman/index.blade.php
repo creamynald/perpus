@@ -89,7 +89,7 @@
                                     </a>
                                     <a href="{{ route('pinjam-buku.invoice', $row->id) }}" class="btn btn-sm btn-info">
                                         <i class="fa fa-print"></i>
-                                    </a>                                    
+                                    </a>                                                                                                          
                                 </td>
                         @endforeach
 
