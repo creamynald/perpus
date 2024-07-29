@@ -43,8 +43,9 @@ Route::middleware('has.role')
             Route::get('/pinjam-buku/{id}', [PustakaController::class, 'pinjam'])->name('pinjam');
         });
         Route::prefix('laporan')->group(function () {
-            Route::resource('lap-peminjaman', lapPeminjamanController::class);
-            Route::get('lap-peminjaman/pdf', [lapPeminjamanController::class, 'pdf'])->name('lap-peminjaman.pdf');
+            Route::get('lap-peminjaman', [lapPeminjamanController::class, 'index'])->name('lap-peminjaman.index');
+            Route::get('lap-peminjaman/pdf', [lapPeminjamanController::class, 'exportPdf'])->name('lap-peminjaman.pdf');
+            
             Route::resource('lap-pustaka', lapPustakaController::class);
             Route::resource('lap-anggota', lapAnggotaController::class);
         });

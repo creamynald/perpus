@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -155,23 +154,28 @@ return [
     |
     */
 
-    'providers' => ServiceProvider::defaultProviders()->merge([
-        /*
-         * Package Service Providers...
-         */
+    'providers' => ServiceProvider::defaultProviders()
+        ->merge([
+            /*
+             * Package Service Providers...
+             */
 
-        /*
-         * Application Service Providers...
-         */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+            /*
+             * Application Service Providers...
+             */
+            App\Providers\AppServiceProvider::class,
+            App\Providers\AuthServiceProvider::class,
+            // App\Providers\BroadcastServiceProvider::class,
+            App\Providers\EventServiceProvider::class,
+            App\Providers\RouteServiceProvider::class,
 
-        // Additional Service Providers
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-    ])->toArray(),
+            // Additional Service Providers
+            RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
+            // PDF
+            Barryvdh\DomPDF\ServiceProvider::class,
+        ])
+        ->toArray(),
 
     /*
     |--------------------------------------------------------------------------
@@ -184,11 +188,15 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+    'aliases' => Facade::defaultAliases()
+        ->merge([
+            // 'Example' => App\Facades\Example::class,
 
-        // Additional Aliases
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-    ])->toArray(),
+            // Additional Aliases
+            'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
+            // PDF
+            'PDF' => Barryvdh\DomPDF\Facade::class,
+        ])
+        ->toArray(),
 ];

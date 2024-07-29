@@ -24,13 +24,13 @@
                     </form>
                 </div>
                 <div class="block-options">
-                    <a href="{{ route('lap-peminjaman.pdf') }}" target="_blank" class="btn btn-primary">
+                    <a href="{{ route('lap-peminjaman.pdf', ['tgl_awal' => request('tgl_awal'), 'tgl_akhir' => request('tgl_akhir')]) }}" target="_blank" class="btn btn-primary">
                         <i class="fa fa-file-pdf"></i> Cetak PDF
                     </a>
                 </div>
             </div>
         </div>
-        @if ($peminjaman->isNotEmpty())
+        @if($peminjaman->isNotEmpty())
             <div class="block-content block-content-full">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
@@ -46,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($peminjaman as $key => $row)
+                            @foreach($peminjaman as $key => $row)
                                 <tr>
                                     <td class="text-center">{{ $key + 1 }}</td>
                                     <td class="text-center">{{ $row->kode_peminjaman }}</td>
@@ -71,32 +71,3 @@
         <!-- END Dynamic Table Full -->
     </div>
 @endsection
-
-@push('css')
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('assets/js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
-@endpush
-
-@push('js')
-    <!-- jQuery (required for DataTables plugin) -->
-    <script src="{{ asset('assets/js/lib/jquery.min.js') }}"></script>
-
-    <!-- Page JS Plugins -->
-    <script src="{{ asset('assets/js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
-
-    <!-- Page JS Code -->
-    <script src="{{ asset('assets/js/pages/be_tables_datatables.min.js') }}"></script>
-@endpush
