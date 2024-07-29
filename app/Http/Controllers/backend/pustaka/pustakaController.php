@@ -9,13 +9,30 @@ use Alert;
 
 class pustakaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $kategori = KategoriPustaka::all();
+        $penulis = Penulis::all();
+        $penerbit = Penerbit::all();
+
+        // Ambil data pustaka dengan relasi
+        $pustaka = Pustaka::with(['kategori', 'penulis', 'penerbit'])
+            ->when($request->kategori, function ($query, $kategori) {
+                return $query->where('kategori_pustaka_id', $kategori);
+            })
+            ->when($request->penulis, function ($query, $penulis) {
+                return $query->where('penulis_id', $penulis);
+            })
+            ->when($request->penerbit, function ($query, $penerbit) {
+                return $query->where('penerbit_id', $penerbit);
+            })
+            ->get();
+
         return view('backend.pustaka.buku.index', [
-            'pustaka' => Pustaka::latest()->get(),
-            'kategori' => kategoriPustaka::all(),
-            'penulis' => Penulis::all(),
-            'penerbit' => Penerbit::all(),
+            'pustaka' => $pustaka,
+            'kategori' => $kategori,
+            'penulis' => $penulis,
+            'penerbit' => $penerbit,
         ]);
     }
 
@@ -24,33 +41,6 @@ class pustakaController extends Controller
         return view('backend.pustaka.buku.show', [
             'pustaka' => Pustaka::findOrFail($id),
         ]);
-    }
-
-    public function search(Request $request)
-    {
-        $query = Pustaka::query();
-
-        if ($request->filled('kategori')) {
-            $query->whereHas('kategori', function ($q) use ($request) {
-                $q->where('nama_kategori_pustaka', 'like', '%' . $request->kategori . '%');
-            });
-        }
-
-        if ($request->filled('penulis')) {
-            $query->whereHas('penulis', function ($q) use ($request) {
-                $q->where('nama_penulis', 'like', '%' . $request->penulis . '%');
-            });
-        }
-
-        if ($request->filled('penerbit')) {
-            $query->whereHas('penerbit', function ($q) use ($request) {
-                $q->where('nama_penerbit', 'like', '%' . $request->penerbit . '%');
-            });
-        }
-
-        $pustaka = $query->get();
-
-        return view('backend.pustaka.buku.index', compact('pustaka'));
     }
 
     public function create()

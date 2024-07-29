@@ -39,10 +39,9 @@ Route::middleware('has.role')
             Route::resource('penulis', penulisController::class);
             Route::resource('penerbit', penerbitController::class);
             Route::resource('buku', pustakaController::class);
-            Route::get('/buku/search', [PustakaController::class, 'search'])->name('buku.search');
             Route::post('pinjam-buku/verifikasi/{id}', [App\Http\Controllers\backend\peminjaman\peminjamanController::class, 'verifikasi'])->name('pinjam-buku.verifikasi');
-            Route::get('/pinjam-buku/{id}', [PustakaController::class, 'pinjam'])->name('pinjam');
-        });
+            Route::get('/pinjam-buku/{id}', [pustakaController::class, 'pinjam'])->name('pinjam');
+        });        
         Route::prefix('laporan')->group(function () {
             Route::get('lap-peminjaman', [lapPeminjamanController::class, 'index'])->name('lap-peminjaman.index');
             Route::get('lap-peminjaman/pdf', [lapPeminjamanController::class, 'exportPdf'])->name('lap-peminjaman.pdf');
