@@ -55,7 +55,8 @@ Route::middleware('has.role')
         });
         Route::prefix('pengaturan')->group(function () {
             Route::resource('anggota', anggotaController::class);
-            Route::resource('aplikasi', pengaturanAplikasiController::class);
+            Route::get('aplikasi', [pengaturanAplikasiController::class, 'index'])->name('pengaturan.aplikasi');
+            Route::post('aplikasi', [pengaturanAplikasiController::class, 'store'])->name('pengaturan.aplikasi.update');
         });
     });
 

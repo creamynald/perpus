@@ -8,6 +8,7 @@ use Database\Seeders\data\bukuSeeder;
 use Database\Seeders\data\kategoriSeeder;
 use Database\Seeders\data\peminjamanSeeder;
 use Database\Seeders\data\penerbitSeeder;
+use Database\Seeders\data\pengaturanAplikasiSeeder;
 use Database\Seeders\data\penulisSeeder;
 use Illuminate\Database\Seeder;
 
@@ -24,7 +25,8 @@ class DatabaseSeeder extends Seeder
             penulisSeeder::class,
             penerbitSeeder::class,
             bukuSeeder::class, 
-            peminjamanSeeder::class
+            peminjamanSeeder::class,
+            pengaturanAplikasiSeeder::class,
         ]);
     }
 }
