@@ -21,7 +21,7 @@ class pengaturanAplikasiSeeder extends Seeder
                 'email' => 'SDN40BENGKALIS@GMAIL.COM',
                 'no_telp' => '0812-3456-7890',
                 'website' => 'https://sdn40bengkalis.sch.id',
-                'logo' => null,
+                'logo' => 'logo.png',
             ]);
         }
     }
