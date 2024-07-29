@@ -45,9 +45,12 @@ Route::middleware('has.role')
         Route::prefix('laporan')->group(function () {
             Route::get('lap-peminjaman', [lapPeminjamanController::class, 'index'])->name('lap-peminjaman.index');
             Route::get('lap-peminjaman/pdf', [lapPeminjamanController::class, 'exportPdf'])->name('lap-peminjaman.pdf');
+
+            Route::get('lap-pustaka', [lapPustakaController::class, 'index'])->name('lap-pustaka.index');
+            Route::get('lap-pustaka/pdf', [lapPustakaController::class, 'exportPdf'])->name('lap-pustaka.pdf');
             
-            Route::resource('lap-pustaka', lapPustakaController::class);
-            Route::resource('lap-anggota', lapAnggotaController::class);
+            Route::get('lap-anggota', [lapAnggotaController::class, 'index'])->name('lap-anggota.index');
+            Route::get('lap-anggota/pdf', [lapAnggotaController::class, 'exportPdf'])->name('lap-anggota.pdf');
         });
         Route::prefix('pengaturan')->group(function () {
             Route::resource('anggota', anggotaController::class);
