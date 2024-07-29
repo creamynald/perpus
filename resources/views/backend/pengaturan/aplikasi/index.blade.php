@@ -11,15 +11,15 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Form @yield('subTitle')</h3>
                 <div class="block-options">
-                    <a href="#target" class="btn btn-sm btn-primary">
+                    <button type="submit" form="settingsForm" class="btn btn-sm btn-primary">
                         <i class="fa fa-save"></i> Simpan
-                    </a>
+                    </button>
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('pengaturan.aplikasi.update') }}" method="POST" enctype="multipart/form-data">
+                <form id="settingsForm" action="{{ route('pengaturan.aplikasi.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+                    @method('POST')
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="mb-4">
@@ -60,12 +60,17 @@
                                 <label class="form-label" for="logo">Logo</label>
                                 <input type="file" class="form-control" id="logo" name="logo">
                                 @if ($settings && $settings->logo)
-                                    <img src="{{ asset('storage/' . $settings->logo) }}" alt="Logo" class="mt-2"
+                                    <img src="{{ asset('img/logo/' . $settings->logo) }}" alt="Logo" class="mt-2"
                                         style="max-width: 150px;">
                                 @endif
                             </div>
                         </div>
                     </div>
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                 </form>
             </div>
         </div>
