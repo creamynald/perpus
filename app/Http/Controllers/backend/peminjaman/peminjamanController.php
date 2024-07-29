@@ -7,6 +7,7 @@ use App\Models\Peminjaman;
 use App\Models\Pustaka;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class peminjamanController extends Controller
 {
@@ -210,5 +211,12 @@ class peminjamanController extends Controller
         ]);
 
         return redirect()->route('pinjam-buku.index')->with('success', 'Pengembalian buku berhasil diverifikasi');
+    }
+
+    public function invoice($id)
+    {
+        $peminjaman = Peminjaman::with(['user', 'pustaka'])->findOrFail($id);
+        $pdf = Pdf::loadView('backend.peminjaman.invoice', compact('peminjaman'));
+        return $pdf->download('invoice_peminjaman.pdf');
     }
 }

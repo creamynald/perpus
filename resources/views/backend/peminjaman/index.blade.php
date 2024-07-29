@@ -87,14 +87,9 @@
                                     <a href="{{ route('pinjam-buku.edit', $row->id) }}" class="btn btn-sm btn-warning">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('pinjam-buku.destroy', $row->id) }}" method="POST"
-                                        style="display: inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    <a href="{{ route('pinjam-buku.invoice', $row->id) }}" class="btn btn-sm btn-info">
+                                        <i class="fa fa-print"></i>
+                                    </a>                                    
                                 </td>
                         @endforeach
 
