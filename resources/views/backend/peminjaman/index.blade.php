@@ -34,6 +34,8 @@
                             <th>Nama Anggota</th>
                             <th>Kelas</th>
                             <th>Judul Pustaka</th>
+                            <th>Jumlah</th>
+                            <th>Kategori</th>
                             <th class="text-center">Status</th>
                             <th class="text-center" style="width: 15%;">Aksi</th>
                         </tr>
@@ -48,9 +50,9 @@
                                 <td>{{ $row->user->kelas }}</td>
                                 <td>
                                     {{ $row->pustaka->judul_pustaka }}
-                                    <span
-                                        class="badge bg-danger">{{ $row->pustaka->kategori->nama_kategori_pustaka }}</span>
                                 </td>
+                                <td>1 Pustaka</td>
+                                <td>{{ $row->pustaka->kategori->nama_kategori_pustaka }}</td>
                                 <td class="text-center">
                                     @if ($row->status == 'diajukan')
                                         <span class="badge bg-warning">Diajukan</span>
