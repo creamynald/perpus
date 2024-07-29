@@ -19,6 +19,7 @@ class peminjamanController extends Controller
 
     public function index()
     {
+        // cek peminajaman
         if (
             auth()
                 ->user()

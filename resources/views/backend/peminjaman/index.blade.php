@@ -54,15 +54,35 @@
                                 <td>1 Pustaka</td>
                                 <td>{{ $row->pustaka->kategori->nama_kategori_pustaka }}</td>
                                 <td class="text-center">
-                                    @if ($row->status == 'diajukan')
-                                        <span class="badge bg-warning">Diajukan</span>
-                                    @elseif($row->status == 'dipinjam')
-                                        <span class="badge bg-success">Dipinjam</span>
-                                    @elseif($row->status == 'dikembalikan')
-                                        <span class="badge bg-success">Dikembalikan</span>
-                                    @else
-                                        <span class="badge bg-danger">Dibatalkan</span>
-                                    @endif
+                                    @php
+                                        $today = \Carbon\Carbon::now();
+                                        $tanggalPinjam = \Carbon\Carbon::parse($row->tanggal_pinjam);
+                                        $diffInDays = $today->diffInDays($tanggalPinjam, false); // false for negative values
+
+                                        if ($row->status == 'diajukan') {
+                                            $statusLabel = 'Diajukan';
+                                            $badgeClass = 'bg-warning';
+                                        } elseif ($row->status == 'dipinjam') {
+                                            if ($diffInDays > 30) {
+                                                $statusLabel = 'Terlambat 30 Hari : Membersihkan kamar mandi';
+                                                $badgeClass = 'bg-danger';
+                                            } elseif ($diffInDays > 7) {
+                                                $statusLabel = 'Terlambat 7 Hari : Membersihkan Perpustakaan';
+                                                $badgeClass = 'bg-danger';
+                                            } else {
+                                                $statusLabel = 'Dipinjam';
+                                                $badgeClass = 'bg-success';
+                                            }
+                                        } elseif ($row->status == 'dikembalikan') {
+                                            $statusLabel = 'Dikembalikan';
+                                            $badgeClass = 'bg-success';
+                                        } else {
+                                            $statusLabel = 'Dibatalkan';
+                                            $badgeClass = 'bg-danger';
+                                        }
+                                    @endphp
+
+                                    <span class="badge {{ $badgeClass }}">{{ $statusLabel }}</span>
                                 </td>
                                 <td class="text-center">
                                     @role(['admin', 'super admin'])
@@ -89,7 +109,7 @@
                                     </a>
                                     <a href="{{ route('pinjam-buku.invoice', $row->id) }}" class="btn btn-sm btn-info">
                                         <i class="fa fa-print"></i>
-                                    </a>                                                                                                          
+                                    </a>
                                 </td>
                         @endforeach
 
