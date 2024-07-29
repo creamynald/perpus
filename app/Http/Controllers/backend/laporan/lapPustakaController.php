@@ -11,15 +11,9 @@ class lapPustakaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Pustaka::query();
-
-        if ($request->has('kategori')) {
-            $query->where('kategori', $request->kategori);
-        }
-
-        $pustaka = $query->get();
-
-        return view('backend.laporan.lapPustaka.index', compact('pustaka'));
+        return view('backend.laporan.lapPustaka.index', [
+            'pustaka' => Pustaka::all(),
+        ]);
     }
 
     public function exportPdf(Request $request)
