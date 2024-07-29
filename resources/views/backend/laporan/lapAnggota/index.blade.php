@@ -26,7 +26,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">No</th>
-                                <th class="text-center">Kode</th>
+                                <th class="text-center">Kelas</th>
                                 <th class="text-center">Nama</th>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">No Telp</th>
@@ -39,7 +39,7 @@
                             @foreach($anggota as $key => $row)
                                 <tr>
                                     <td class="text-center">{{ $key + 1 }}</td>
-                                    <td class="text-center">{{ $row->id }}</td>
+                                    <td class="text-center">{{ $row->kelas }}</td>
                                     <td class="text-center">{{ $row->name }}</td>
                                     <td class="text-center">{{ $row->email }}</td>
                                     <td class="text-center">{{ $row->no_telp }}</td>

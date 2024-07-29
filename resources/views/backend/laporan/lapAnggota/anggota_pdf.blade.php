@@ -75,7 +75,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Kode</th>
+                <th>Kelas</th>
                 <th>Nama</th>
                 <th>Email</th>
                 <th>No Telp</th>
@@ -88,7 +88,7 @@
             @foreach ($anggota as $key => $row)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ $row->id }}</td>
+                    <td>{{ $row->kelas }}</td>
                     <td>{{ $row->name }}</td>
                     <td>{{ $row->email }}</td>
                     <td>{{ $row->no_telp }}</td>
