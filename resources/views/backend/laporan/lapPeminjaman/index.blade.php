@@ -24,13 +24,14 @@
                     </form>
                 </div>
                 <div class="block-options">
-                    <a href="{{ route('lap-peminjaman.pdf', ['tgl_awal' => request('tgl_awal'), 'tgl_akhir' => request('tgl_akhir')]) }}" target="_blank" class="btn btn-primary">
+                    <a href="{{ route('lap-peminjaman.pdf', ['tgl_awal' => request('tgl_awal'), 'tgl_akhir' => request('tgl_akhir')]) }}"
+                        target="_blank" class="btn btn-primary">
                         <i class="fa fa-file-pdf"></i> Cetak PDF
                     </a>
                 </div>
             </div>
         </div>
-        @if($peminjaman->isNotEmpty())
+        @if ($peminjaman->isNotEmpty())
             <div class="block-content block-content-full">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
@@ -39,14 +40,14 @@
                                 <th class="text-center">No</th>
                                 <th class="text-center">Kode Peminjaman</th>
                                 <th class="text-center">Nama Anggota</th>
-                                <th class="text-center">Judul Buku</th>
+                                <th class="text-center">Judul Pustaka</th>
                                 <th class="text-center">Tanggal Pinjam</th>
                                 <th class="text-center">Tanggal Kembali</th>
                                 <th class="text-center">Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($peminjaman as $key => $row)
+                            @foreach ($peminjaman as $key => $row)
                                 <tr>
                                     <td class="text-center">{{ $key + 1 }}</td>
                                     <td class="text-center">{{ $row->kode_peminjaman }}</td>
@@ -54,7 +55,17 @@
                                     <td class="text-center">{{ $row->pustaka->judul_pustaka }}</td>
                                     <td class="text-center">{{ $row->tanggal_pinjam }}</td>
                                     <td class="text-center">{{ $row->tanggal_kembali }}</td>
-                                    <td class="text-center">{{ $row->status }}</td>
+                                    <td class="text-center">
+                                        @if ($row->status == 'diajukan')
+                                            <span class="badge bg-warning">Diajukan</span>
+                                        @elseif($row->status == 'dipinjam')
+                                            <span class="badge bg-success">Dipinjam</span>
+                                        @elseif($row->status == 'dikembalikan')
+                                            <span class="badge bg-success">Dikembalikan</span>
+                                        @else
+                                            <span class="badge bg-danger">Dibatalkan</span>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
