@@ -1,15 +1,10 @@
 <li class="nav-main-heading">Menu</li>
 
 <li class="nav-main-item">
-    <a class="nav-main-link {{ request()->segment(3) == 'pinjam-buku' ? 'active' : '' }}" href="{{ route('pinjam-buku.index') }}">
+    <a class="nav-main-link {{ request()->segment(3) == 'pinjam-buku' ? 'active' : '' }}"
+        href="{{ route('pinjam-buku.index') }}">
         <i class="nav-main-link-icon fa fa-list"></i>
         <span class="nav-main-link-name">Peminjaman</span>
-    </a>
-</li>
-<li class="nav-main-item">
-    <a class="nav-main-link" href="#">
-        <i class="nav-main-link-icon fa fa-file-pdf"></i>
-        <span class="nav-main-link-name">Laporan</span>
     </a>
 </li>
 <li class="nav-main-item {{ request()->segment(2) == 'pustaka' ? 'open' : '' }}">
@@ -45,6 +40,35 @@
         </li>
     </ul>
 </li>
+@role(['admin', 'super admin'])
+    <li class="nav-main-item {{ request()->segment(2) == 'laporan' ? 'open' : '' }}">
+        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false"
+            href="#">
+            <i class="nav-main-link-icon fa fa-file-pdf"></i>
+            <span class="nav-main-link-name">Laporan</span>
+        </a>
+        <ul class="nav-main-submenu">
+            <li class="nav-main-item">
+                <a class="nav-main-link {{ request()->segment(3) == 'peminjaman' ? 'active' : '' }}"
+                    href="{{ route('lap-peminjaman.index') }}">
+                    <span class="nav-main-link-name">Lap. Peminjaman</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link {{ request()->segment(3) == 'pustaka' ? 'active' : '' }}"
+                    href="{{ route('lap-pustaka.index') }}">
+                    <span class="nav-main-link-name">Lap. Pustaka</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link {{ request()->segment(3) == 'anggota' ? 'active' : '' }}"
+                    href="{{ route('lap-anggota.index') }}">
+                    <span class="nav-main-link-name">Lap. Anggota</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+@endrole
 <li class="nav-main-item">
     <a class="nav-main-link" href="{{ route('anggota.index') }}">
         <i class="nav-main-link-icon fa fa-users"></i>

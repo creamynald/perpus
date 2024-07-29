@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\backend\dashboardController;
+use App\Http\Controllers\backend\laporan\lapAnggotaController;
+use App\Http\Controllers\backend\laporan\lapPeminjamanController;
+use App\Http\Controllers\backend\laporan\lapPustakaController;
 use App\Http\Controllers\backend\peminjaman\peminjamanController;
 use App\Http\Controllers\backend\pengaturan\anggotaController;
 use App\Http\Controllers\backend\pengaturan\pengaturanAplikasiController;
@@ -38,6 +41,12 @@ Route::middleware('has.role')
             Route::get('/buku/search', [PustakaController::class, 'search'])->name('buku.search');
             Route::post('pinjam-buku/verifikasi/{id}', [App\Http\Controllers\backend\peminjaman\peminjamanController::class, 'verifikasi'])->name('pinjam-buku.verifikasi');
             Route::get('/pinjam-buku/{id}', [PustakaController::class, 'pinjam'])->name('pinjam');
+        });
+        Route::prefix('laporan')->group(function () {
+            Route::resource('lap-peminjaman', lapPeminjamanController::class);
+            Route::get('lap-peminjaman/pdf', [lapPeminjamanController::class, 'pdf'])->name('lap-peminjaman.pdf');
+            Route::resource('lap-pustaka', lapPustakaController::class);
+            Route::resource('lap-anggota', lapAnggotaController::class);
         });
         Route::prefix('pengaturan')->group(function () {
             Route::resource('anggota', anggotaController::class);

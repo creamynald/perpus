@@ -26,6 +26,7 @@
                             <th>Nama</th>
                             <th>Surel</th>
                             <th>No Telp</th>
+                            <th>Kelas</th>
                             <th>Alamat</th>
                             <th>Status</th>
                             <th class="text-center" style="width: 15%;">Aksi</th>
@@ -38,6 +39,7 @@
                                 <td class="fw-semibold">{{ $row->name }}</td>
                                 <td class="fw-semibold">{{ $row->email }}</td>
                                 <td class="fw-semibold">{{ $row->no_telp }}</td>
+                                <td class="fw-semibold text-center">{{ $row->kelas }}</td>
                                 <td class="fw-semibold">{{ $row->alamat }}</td>
                                 <td class="fw-semibold text-center">
                                     @if ($row->status == 'aktif')
