@@ -12,7 +12,7 @@ class lapAnggotaController extends Controller
     public function index()
     {
         return view('backend.laporan.lapAnggota.index', [
-            'anggota' => User::all(),
+            'anggota' => User::role('siswa')->get(),
         ]);
     }
 
