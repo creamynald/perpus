@@ -23,12 +23,14 @@
                         </div>
                     </form>
                 </div>
-                <div class="block-options">
-                    <a href="{{ route('lap-peminjaman.pdf', ['tgl_awal' => request('tgl_awal'), 'tgl_akhir' => request('tgl_akhir')]) }}"
-                        target="_blank" class="btn btn-primary">
-                        <i class="fa fa-file-pdf"></i> Cetak PDF
-                    </a>
-                </div>
+                @role(['admin', 'super admin', 'kepsek'])
+                    <div class="block-options">
+                        <a href="{{ route('lap-peminjaman.pdf', ['tgl_awal' => request('tgl_awal'), 'tgl_akhir' => request('tgl_akhir')]) }}"
+                            target="_blank" class="btn btn-primary">
+                            <i class="fa fa-file-pdf"></i> Cetak PDF
+                        </a>
+                    </div>
+                @endrole
             </div>
         </div>
         @if ($peminjaman->isNotEmpty())
