@@ -57,7 +57,7 @@
                                     @php
                                         $today = \Carbon\Carbon::now();
                                         $tanggalPinjam = \Carbon\Carbon::parse($row->tanggal_pinjam);
-                                        $diffInDays = $today->diffInDays($tanggalPinjam, false); // false for negative values
+                                        $diffInDays = $today->diffInDays($tanggalPinjam, true);
 
                                         if ($row->status == 'diajukan') {
                                             $statusLabel = 'Diajukan';
