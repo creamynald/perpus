@@ -19,7 +19,7 @@ class lapAnggotaController extends Controller
     public function exportPdf(Request $request)
     {
         $pdf = Pdf::loadView('backend.laporan.lapAnggota.anggota_pdf', [
-            'anggota' => User::all(),
+            'anggota' => User::role('siswa')->get(),
         ]);
         return $pdf->download('laporan_anggota.pdf');
     }
