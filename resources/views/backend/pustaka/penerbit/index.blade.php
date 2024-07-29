@@ -12,10 +12,11 @@
                 <h3 class="block-title">
                     <small>Table @yield('subTitle')</small>
                 </h3>
-
-                <a href="{{ route('penerbit.create') }}" type="button" class="btn-block-option">
-                    <i class="si si-plus"></i> Tambah
-                </a>
+                @role(['admin', 'super admin'])
+                    <a href="{{ route('penerbit.create') }}" type="button" class="btn-block-option">
+                        <i class="si si-plus"></i> Tambah
+                    </a>
+                @endrole
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
@@ -39,10 +40,12 @@
                                         class="btn btn-sm btn-secondary" title="Edit">
                                         <i class="fa fa-pen"></i>
                                     </a>
-                                    <form action="{{ route('penerbit.destroy', $row) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('penerbit.destroy', $row) }}" method="POST"
+                                        style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" title="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
+                                        <button type="submit" class="btn btn-sm btn-danger" title="Delete"
+                                            onclick="return confirm('Are you sure you want to delete this item?');">
                                             <i class="fa fa-trash-can"></i>
                                         </button>
                                     </form>

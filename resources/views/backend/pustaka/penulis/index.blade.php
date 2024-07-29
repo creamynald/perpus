@@ -12,10 +12,11 @@
                 <h3 class="block-title">
                     <small>Table @yield('subTitle')</small>
                 </h3>
-
-                <a href="{{ route('penulis.create') }}" type="button" class="btn-block-option">
-                    <i class="si si-plus"></i> Tambah
-                </a>
+                @role(['admin', 'super admin'])
+                    <a href="{{ route('penulis.create') }}" type="button" class="btn-block-option">
+                        <i class="si si-plus"></i> Tambah
+                    </a>
+                @endrole
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
