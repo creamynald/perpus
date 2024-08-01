@@ -34,6 +34,7 @@ class anggotaController extends Controller
                 'tgl_lahir' => 'required',
                 'foto' => 'required|file|max:2048',
                 'kelas' => 'required',
+                'password' => 'required',
             ],
             [
                 'name.required' => 'Nama harus diisi',
@@ -50,6 +51,7 @@ class anggotaController extends Controller
                 'foto.file' => 'Foto harus berupa file',
                 'foto.max' => 'Foto tidak boleh lebih dari 2MB',
                 'kelas.required' => 'Kelas harus diisi',
+                'password.required' => 'Password/Kata Sandi harus diisi',
             ],
         );
 
@@ -63,7 +65,7 @@ class anggotaController extends Controller
         $anggota = new User();
         $anggota->name = $request->name;
         $anggota->email = $request->email;
-        $anggota->password = bcrypt('password'); // Set default password
+        $anggota->password = bcrypt($request->password);
         $anggota->jenis_kelamin = $request->jenis_kelamin;
         $anggota->status = $request->status;
         $anggota->tempat_lahir = $request->tempat_lahir;

@@ -10,10 +10,16 @@
     </div>
     <div class="block-content">
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-4">
                 <div class="mb-4">
                     <label class="form-label" for="email">Surel</label>
                     <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="mb-4">
+                    <label class="form-label" for="password">password</label>
+                    <input type="password" class="form-control" id="password" name="password">
                 </div>
             </div>
             <div class="col-sm">
