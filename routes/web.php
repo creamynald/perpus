@@ -41,7 +41,7 @@ Route::middleware('has.role')
             Route::resource('buku', pustakaController::class);
             Route::post('pinjam-buku/verifikasi/{id}', [App\Http\Controllers\backend\peminjaman\peminjamanController::class, 'verifikasi'])->name('pinjam-buku.verifikasi');
             Route::get('/pinjam-buku/{id}', [pustakaController::class, 'pinjam'])->name('pinjam');
-        });        
+        });
         Route::prefix('laporan')->group(function () {
             Route::get('lap-peminjaman', [lapPeminjamanController::class, 'index'])->name('lap-peminjaman.index');
             Route::get('lap-peminjaman/pdf', [lapPeminjamanController::class, 'exportPdf'])->name('lap-peminjaman.pdf');
@@ -53,7 +53,7 @@ Route::middleware('has.role')
             Route::get('lap-anggota/pdf', [lapAnggotaController::class, 'exportPdf'])->name('lap-anggota.pdf');
         });
         Route::prefix('pengaturan')->group(function () {
-            Route::resource('anggota', anggotaController::class);
+            Route::resource('daftar-anggota', AnggotaController::class);
             Route::get('aplikasi', [pengaturanAplikasiController::class, 'index'])->name('pengaturan.aplikasi');
             Route::post('aplikasi', [pengaturanAplikasiController::class, 'store'])->name('pengaturan.aplikasi.update');
         });

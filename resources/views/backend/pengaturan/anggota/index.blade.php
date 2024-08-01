@@ -12,10 +12,10 @@
                 <h3 class="block-title">
                     <small>Table @yield('subTitle')</small>
                 </h3>
-                @include('backend.pengaturan.anggota.partials.button', [
-                    'submit' => 'tambah',
-                    'back' => 'kembali',
-                ])
+
+                <a href="{{ route('daftar-anggota.create') }}" type="button" class="btn-block-option">
+                    <i class="si si-plus"></i> Add Data
+                </a>
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($anggota as $index => $row)
+                        @foreach ($users as $index => $row)
                             <tr>
                                 <td class="text-center">{{ $index + 1 }}</td>
                                 <td class="fw-semibold">{{ $row->name }}</td>
@@ -49,11 +49,11 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('anggota.edit', $row) }}" type="button"
+                                    <a href="{{ route('daftar-anggota.edit', $row) }}" type="button"
                                         class="btn btn-sm btn-secondary" title="Edit">
                                         <i class="fa fa-pen"></i>
                                     </a>
-                                    <form action="{{ route('anggota.destroy', $row) }}" method="POST"
+                                    <form action="{{ route('daftar-anggota.destroy', $row) }}" method="POST"
                                         style="display:inline;">
                                         @csrf
                                         @method('DELETE')
