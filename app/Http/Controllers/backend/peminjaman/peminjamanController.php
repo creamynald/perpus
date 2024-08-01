@@ -227,6 +227,22 @@ class peminjamanController extends Controller
         return redirect()->route('pinjam-buku.index')->with('success', 'Pengembalian buku berhasil diverifikasi');
     }
 
+    public function dibatalkan($id)
+    {
+        $peminjaman = Peminjaman::find($id);
+
+        if (!$peminjaman || $peminjaman->status != 'diajukan') {
+            return redirect()->route('pinjam-buku.index')->with('error', 'Peminjaman tidak valid
+            untuk dibatalkan');
+        }
+
+        $peminjaman->update([
+            'status' => 'dibatalkan',
+        ]);
+
+        return redirect()->route('pinjam-buku.index')->with('success', 'Peminjaman berhasil dibatalkan');
+    }
+
     public function invoice($id)
     {
         $pdf = Pdf::loadView('backend.peminjaman.invoice', [

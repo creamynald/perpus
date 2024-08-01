@@ -38,6 +38,11 @@ class pustakaController extends Controller
 
     public function show($id)
     {
+        // mengirim pustaka_id dan dikirim ke peminjamanController di create function
+        // return redirect()->route('peminjaman.create', ['
+        //     pustaka_id' => $id,
+        // ]);
+
         return view('backend.pustaka.buku.show', [
             'pustaka' => Pustaka::findOrFail($id),
         ]);
@@ -202,6 +207,14 @@ class pustakaController extends Controller
     {
         return view('backend.peminjaman.form', [
             'pinjamBuku' => Pustaka::findOrFail($id),
+        ]);
+    }
+
+    public function pinjamBuku(Pustaka $pustaka)
+    {
+        return view('backend.peminjaman.index', [
+            // get pustaka_id from pustakaController show function
+            'pustaka_id' => $pustaka->id,
         ]);
     }
 }
