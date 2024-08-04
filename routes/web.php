@@ -32,6 +32,7 @@ Route::middleware('has.role')
             Route::resource('pinjam-buku', peminjamanController::class);
             Route::post('pinjam-buku/verifikasi/{id}', [peminjamanController::class, 'verifikasi'])->name('pinjam-buku.verifikasi');
             Route::post('pinjam-buku/verifikasi-pengembalian/{id}', [peminjamanController::class, 'verifikasiPengembalian'])->name('pinjam-buku.verifikasi-pengembalian');
+            Route::post('pinjam-buku/dibatalkan/{id}', [peminjamanController::class, 'dibatalkan'])->name('pinjam-buku.dibatalkan');
             Route::get('/pinjam-buku/invoice/{id}', [App\Http\Controllers\backend\peminjaman\peminjamanController::class, 'invoice'])->name('pinjam-buku.invoice');
         });
         Route::prefix('pustaka')->group(function () {
@@ -41,7 +42,7 @@ Route::middleware('has.role')
             Route::resource('buku', pustakaController::class);
             Route::post('pinjam-buku/verifikasi/{id}', [App\Http\Controllers\backend\peminjaman\peminjamanController::class, 'verifikasi'])->name('pinjam-buku.verifikasi');
             Route::get('/pinjam-buku/{id}', [pustakaController::class, 'pinjam'])->name('pinjam');
-        });        
+        });
         Route::prefix('laporan')->group(function () {
             Route::get('lap-peminjaman', [lapPeminjamanController::class, 'index'])->name('lap-peminjaman.index');
             Route::get('lap-peminjaman/pdf', [lapPeminjamanController::class, 'exportPdf'])->name('lap-peminjaman.pdf');
@@ -53,7 +54,7 @@ Route::middleware('has.role')
             Route::get('lap-anggota/pdf', [lapAnggotaController::class, 'exportPdf'])->name('lap-anggota.pdf');
         });
         Route::prefix('pengaturan')->group(function () {
-            Route::resource('anggota', anggotaController::class);
+            Route::resource('daftar-anggota', AnggotaController::class);
             Route::get('aplikasi', [pengaturanAplikasiController::class, 'index'])->name('pengaturan.aplikasi');
             Route::post('aplikasi', [pengaturanAplikasiController::class, 'store'])->name('pengaturan.aplikasi.update');
         });

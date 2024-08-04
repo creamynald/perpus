@@ -94,6 +94,14 @@
                                                     <i class="fa fa-check"></i>
                                                 </button>
                                             </form>
+                                            {{-- dibatalkan --}}
+                                            <form action="{{ route('pinjam-buku.dibatalkan', $row->id) }}" method="POST"
+                                                style="display: inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </form>
                                         @elseif ($row->status == 'dipinjam')
                                             <form action="{{ route('pinjam-buku.verifikasi-pengembalian', $row->id) }}"
                                                 method="POST" style="display: inline">

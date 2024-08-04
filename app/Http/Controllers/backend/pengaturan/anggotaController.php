@@ -1,28 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\backend\pengaturan;
+namespace App\Http\Controllers\Backend\Pengaturan;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 
-class anggotaController extends Controller
+class AnggotaController extends Controller
 {
     public function index()
     {
-        $anggota = User::role('siswa')->latest()->get();
-        return view('backend.pengaturan.anggota.index', compact('anggota'));
+        $users = User::role('siswa')->get();
+        return view('backend.pengaturan.anggota.index', compact('users'));
     }
 
     public function create()
     {
-        $anggota = new User();
-        return view('backend.pengaturan.anggota.create', compact('anggota'));
+        $user = new User();
+        return view('backend.pengaturan.anggota.create', compact('user'));
     }
 
     public function store(Request $request)
     {
-        $request->validate(
+        // Validasi request
+        $validated = $request->validate(
             [
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
@@ -32,8 +35,9 @@ class anggotaController extends Controller
                 'no_telp' => 'required',
                 'alamat' => 'required',
                 'tgl_lahir' => 'required',
-                'foto' => 'required|file|max:2048',
+                'foto' => 'required|file|mimes:jpg,jpeg,png|max:2048',
                 'kelas' => 'required',
+                'password' => 'required|min:6',
             ],
             [
                 'name.required' => 'Nama harus diisi',
@@ -43,47 +47,98 @@ class anggotaController extends Controller
                 'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
                 'status.required' => 'Status harus diisi',
                 'tempat_lahir.required' => 'Tempat lahir harus diisi',
-                'no_telp.required' => 'No telp harus diisi',
+                'no_telp.required' => 'No. Telp harus diisi',
                 'alamat.required' => 'Alamat harus diisi',
                 'tgl_lahir.required' => 'Tanggal lahir harus diisi',
                 'foto.required' => 'Foto harus diisi',
                 'foto.file' => 'Foto harus berupa file',
-                'foto.max' => 'Foto tidak boleh lebih dari 2MB',
+                'foto.mimes' => 'Foto harus berupa file dengan ekstensi jpg, jpeg, atau png',
+                'foto.max' => 'Foto maksimal 2MB',
                 'kelas.required' => 'Kelas harus diisi',
+                'password.required' => 'Password harus diisi',
+                'password.min' => 'Password minimal 6 karakter',
             ],
         );
 
-        if ($request->hasFile('foto')) {
-            $foto = $request->file('foto')->getClientOriginalName();
-            $request->file('foto')->move('images/anggota/', $foto);
-        } else {
-            $foto = null;
-        }
+        // Menangani file upload
+        $fotoPath = $request->file('foto')->store('foto');
 
-        $anggota = new User();
-        $anggota->name = $request->name;
-        $anggota->email = $request->email;
-        $anggota->password = bcrypt('password'); // Set default password
-        $anggota->jenis_kelamin = $request->jenis_kelamin;
-        $anggota->status = $request->status;
-        $anggota->tempat_lahir = $request->tempat_lahir;
-        $anggota->no_telp = $request->no_telp;
-        $anggota->alamat = $request->alamat;
-        $anggota->tgl_lahir = $request->tgl_lahir;
-        $anggota->foto = $foto;
-        $anggota->kelas = $request->kelas;
-        $anggota->save();
+        // Buat user baru
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'jenis_kelamin' => $request->input('jenis_kelamin'),
+            'status' => $request->input('status'),
+            'tempat_lahir' => $request->input('tempat_lahir'),
+            'no_telp' => $request->input('no_telp'),
+            'alamat' => $request->input('alamat'),
+            'tgl_lahir' => $request->input('tgl_lahir'),
+            'foto' => $fotoPath,
+            'kelas' => $request->input('kelas'),
+            'password' => bcrypt($request->input('password')),
+        ]);
 
-        $anggota->assignRole('siswa');
+        // Menetapkan peran
+        $user->assignRole('siswa');
 
-        return redirect()->route('anggota.index')->with('success', 'Anggota berhasil ditambahkan');
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('daftar-anggota.index')->with('success', 'Anggota berhasil ditambahkan');
     }
 
-    public function edit(User $anggota)
+    public function edit(User $daftar_anggotum)
     {
         return view('backend.pengaturan.anggota.edit', [
-            'anggota' => $anggota,
+            'user' => $daftar_anggotum,
             'submit' => 'Update',
         ]);
+    }
+
+    public function update(User $daftar_anggotum)
+    {
+        request()->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $daftar_anggotum->id,
+            'jenis_kelamin' => 'required',
+            'status' => 'required',
+            'tempat_lahir' => 'required',
+            'no_telp' => 'required',
+            'alamat' => 'required',
+            'tgl_lahir' => 'required',
+            'foto' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'kelas' => 'required',
+            'password' => 'nullable|min:6',
+        ]);
+
+        $daftar_anggotum->update([
+            'name' => request('name'),
+            'email' => request('email'),
+            'jenis_kelamin' => request('jenis_kelamin'),
+            'status' => request('status'),
+            'tempat_lahir' => request('tempat_lahir'),
+            'no_telp' => request('no_telp'),
+            'alamat' => request('alamat'),
+            'tgl_lahir' => request('tgl_lahir'),
+            'kelas' => request('kelas'),
+        ]);
+
+        if (request()->hasFile('foto')) {
+            Storage::delete($daftar_anggotum->foto);
+            $fotoPath = request('foto')->store('foto');
+            $daftar_anggotum->update(['foto' => $fotoPath]);
+        }
+
+        if (request('password')) {
+            $daftar_anggotum->update(['password' => bcrypt(request('password'))]);
+        }
+
+        return redirect()->route('daftar-anggota.index')->with('success', 'Anggota berhasil diupdate');
+    }
+
+    public function destroy(User $daftar_anggotum)
+    {
+        Storage::delete($daftar_anggotum->foto);
+        $daftar_anggotum->delete();
+
+        return redirect()->route('daftar-anggota.index')->with('success', 'Anggota berhasil dihapus');
     }
 }
