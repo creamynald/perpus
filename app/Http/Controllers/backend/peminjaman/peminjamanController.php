@@ -17,22 +17,43 @@ class peminjamanController extends Controller
         $this->middleware('role:siswa|admin|super admin');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        // cek peminajaman
+        // Get the status filter from the request
+        $status = $request->get('status');
+
+        // Query builder for Peminjaman
+        $query = Peminjaman::query();
+
+        // Check user role and apply filters
         if (
             auth()
                 ->user()
                 ->hasRole(['admin', 'super admin'])
         ) {
-            return view('backend.peminjaman.index', [
-                'dataPeminjaman' => Peminjaman::latest()->get(),
-            ]);
+            // Apply status filter if provided
+            if (!empty($status)) {
+                $query->where('status', $status);
+            }
+
+            // Get data for admin
+            $dataPeminjaman = $query->latest()->get();
         } else {
-            return view('backend.peminjaman.index', [
-                'dataPeminjaman' => Peminjaman::where('user_id', auth()->id())->latest()->get(),
-            ]);
+            // Apply status filter if provided and filter by user
+            $query->where('user_id', auth()->id());
+
+            if (!empty($status)) {
+                $query->where('status', $status);
+            }
+
+            // Get data for siswa
+            $dataPeminjaman = $query->latest()->get();
         }
+
+        // Pass the filtered data to the view
+        return view('backend.peminjaman.index', [
+            'dataPeminjaman' => $dataPeminjaman,
+        ]);
     }
 
     public function create()
@@ -232,8 +253,11 @@ class peminjamanController extends Controller
         $peminjaman = Peminjaman::find($id);
 
         if (!$peminjaman || $peminjaman->status != 'diajukan') {
-            return redirect()->route('pinjam-buku.index')->with('error', 'Peminjaman tidak valid
-            untuk dibatalkan');
+            return redirect()->route('pinjam-buku.index')->with(
+                'error',
+                'Peminjaman tidak valid
+            untuk dibatalkan',
+            );
         }
 
         $peminjaman->update([

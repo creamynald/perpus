@@ -14,14 +14,40 @@
                 </h3>
 
                 @role(['admin', 'super admin'])
-                    <a href="{{ route('pinjam-buku.create') }}" type="button" class="btn-block-option">
-                        <i class="si si-plus"></i> Tambah
-                    </a>
+                    <div class="block-options">
+                        <a href="{{ route('pinjam-buku.create') }}" type="button" class="btn-block-option">
+                            <i class="si si-plus"></i> Tambah
+                        </a>
+                    </div>
                     @elserole('siswa')
-                    <a href="{{ route('pinjam-buku.create') }}" type="button" class="btn-block-option">
-                        <i class="si si-plus"></i> Pinjam Buku
-                    </a>
+                    <div class="block-options">
+                        <a href="{{ route('pinjam-buku.create') }}" type="button" class="btn-block-option">
+                            <i class="si si-plus"></i> Pinjam Buku
+                        </a>
+                    </div>
                 @endrole
+                
+                <div class="block-options">
+                    <form action="{{ route('pinjam-buku.index') }}" method="GET">
+                        <div class="input-group">
+                            <select class="form-select" name="status">
+                                <option value="">Pilih Status</option>
+                                <option value="diajukan" {{ request()->get('status') == 'diajukan' ? 'selected' : '' }}>
+                                    Diajukan</option>
+                                <option value="dipinjam" {{ request()->get('status') == 'dipinjam' ? 'selected' : '' }}>
+                                    Dipinjam</option>
+                                <option value="dikembalikan"
+                                    {{ request()->get('status') == 'dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
+                                <option value="dibatalkan" {{ request()->get('status') == 'dibatalkan' ? 'selected' : '' }}>
+                                    Dibatalkan</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-search"></i> Tampilkan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
