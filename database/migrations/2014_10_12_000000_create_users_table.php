@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('no_telp');
             $table->string('alamat');
             $table->date('tgl_lahir');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->string('kelas')->nullable();
             $table->integer('point')->default(0)->nullable();
             $table->timestamp('email_verified_at')->nullable();
