@@ -46,12 +46,16 @@ class dashboardController extends Controller
             }
         }
 
+        // total peminjaman saya (user role siswa)
+
+
         return view('backend.dashboard', [
             'totalPeminjaman' => Peminjaman::whereYear('tanggal_pinjam', $year)->count(),
+            'totalPeminjamanUser' => Peminjaman::where('user_id', auth()->id())->count(),
             'totalAnggota' => User::role('siswa')->count(),
             'totalPustaka' => Pustaka::count(),
             'totalDendaNonMoneter' => Peminjaman::where('denda_non_moneter', '!=', 0)->count(),
-            'pointSiswa' => User::role('siswa')->sum('point'),
+            'pointSaya' => User::where('id', auth()->id())->first()->point,
             'monthlyDiajukan' => array_column($monthlyStatus, 'diajukan'),
             'monthlyDipinjam' => array_column($monthlyStatus, 'dipinjam'),
             'monthlyDikembalikan' => array_column($monthlyStatus, 'dikembalikan'),
