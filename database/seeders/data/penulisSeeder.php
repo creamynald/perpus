@@ -15,23 +15,38 @@ class penulisSeeder extends Seeder
     {
         Penulis::insert([
             [
-                'kode_penulis' => 'KP-DEMO-001',
-                'nama_penulis' => 'Tere Liye',
+                'kode_penulis' => 'Ps-Tp-001',
+                'nama_penulis' => 'Yusfina Hendrifiana',
             ],
 
             [
-                'kode_penulis' => 'KP-DEMO-002',
-                'nama_penulis' => 'Raditya Dika',
+                'kode_penulis' => 'Ps-Tp-002',
+                'nama_penulis' => 'Novika Adelina',
             ],
 
             [
-                'kode_penulis' => 'KP-DEMO-003',
-                'nama_penulis' => 'Andrea Hirata',
+                'kode_penulis' => 'Ps-Tp-003',
+                'nama_penulis' => 'Ari Pudjrastuti, dkk',
             ],
 
             [
-                'kode_penulis' => 'KP-DEMO-004',
-                'nama_penulis' => 'Ika Natassa',
+                'kode_penulis' => 'Ps-Tp-004',
+                'nama_penulis' => 'Irene MJA, dkk',
+            ],
+
+            [
+                'kode_penulis' => 'Ps-Tp-005',
+                'nama_penulis' => 'Haryanto',
+            ],
+
+            [
+                'kode_penulis' => 'Ps-Bc',
+                'nama_penulis' => 'Maulana Syamsuri',
+            ],
+
+            [
+                'kode_penulis' => 'Ps-Bc',
+                'nama_penulis' => 'Arryanti',
             ],
         ]);
     }

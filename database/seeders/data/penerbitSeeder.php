@@ -15,23 +15,23 @@ class penerbitSeeder extends Seeder
     {
         Penerbit::insert([
             [
-                'kode_penerbit' => 'KP-GB',
-                'nama_penerbit' => 'Greenbook ID',
+                'kode_penerbit' => 'Pn-Tp-001',
+                'nama_penerbit' => 'Kemendikbud',
             ],
 
             [
-                'kode_penerbit' => 'KP-GRMD',
-                'nama_penerbit' => 'Gramedia Pustaka Utama',
-            ],
-
-            [
-                'kode_penerbit' => 'KP-MP',
-                'nama_penerbit' => 'Mizan Publishing',
-            ],
-
-            [
-                'kode_penerbit' => 'KP-ERLG',
+                'kode_penerbit' => 'Pn-Tp-002',
                 'nama_penerbit' => 'Erlangga',
+            ],
+
+            [
+                'kode_penerbit' => 'Pn-Tp-003',
+                'nama_penerbit' => 'Bumi Aksara',
+            ],
+
+            [
+                'kode_penerbit' => 'Pn-Tp-004',
+                'nama_penerbit' => 'Balai Pustaka',
             ],
         ]);
     }
