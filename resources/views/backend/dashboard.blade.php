@@ -97,10 +97,10 @@
                                 <div
                                     class="block-content block-content-full d-sm-flex justify-content-between align-items-center">
                                     <div class="d-none d-sm-block">
-                                        <i class="fa fa-rupiah-sign fa-2x opacity-25"></i>
+                                        <i class="fa fa-exclamation-triangle fa-2x opacity-25"></i>
                                     </div>
                                     <div class="text-end">
-                                        <div class="fs-3 fw-semibold">{{ $totalDendaNonMoneter }}</div>
+                                        <div class="fs-3 fw-semibold">{{ $dendaNonMoneter }}</div>
                                         <div class="fs-sm fw-semibold text-uppercase text-muted">Denda Non-Moneter</div>
                                     </div>
                                 </div>
