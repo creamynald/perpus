@@ -30,8 +30,8 @@ class kategoriSeeder extends Seeder
             ],
 
             [
-                'kode_kategori_pustaka' => 'KP-DEMO-004',
-                'nama_kategori_pustaka' => 'Agama',
+                'kode_kategori_pustaka' => 'CRPN',
+                'nama_kategori_pustaka' => 'Cerita Pendek (CERPEN)',
             ],
         ]);
     }

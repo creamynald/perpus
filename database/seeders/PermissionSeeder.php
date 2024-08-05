@@ -28,7 +28,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'input.anggota']);
         Permission::create(['name' => 'delete.anggota']);
         Permission::create(['name' => 'edit.anggota']);
-        
+
         Permission::create(['name' => 'lihat.peminjaman']);
         Permission::create(['name' => 'input.peminjaman']);
         Permission::create(['name' => 'delete.peminjaman']);
@@ -77,7 +77,6 @@ class PermissionSeeder extends Seeder
         $role3 = Role::create(['name' => 'kepsek']);
         $role3->givePermissionTo('lihat.peminjaman');
         $role3->givePermissionTo('lihat.laporan');
-        
 
         $role4 = Role::create(['name' => 'super admin']);
         // gets all permissions via Gate::before rule; see AuthServiceProvider
@@ -98,6 +97,21 @@ class PermissionSeeder extends Seeder
         ]);
         $siswa->assignRole($role1);
 
+        $dea = \App\Models\User::factory()->create([
+            'name' => 'Adellia Fitri',
+            'email' => 'dea@gmail.com',
+            'kelas' => '4',
+            'tempat_lahir' => 'Sungai alam',
+            'tgl_lahir' => '2007-05-16',
+            'jenis_kelamin' => 'P',
+            'status' => 'aktif',
+            'no_telp' => '082274323345',
+            'alamat' => 'Jl. Jalan',
+            'foto' => '74f05c11-fefd-4685-b9fc-6d269b94d4af.jfif',
+            'agama' => 'islam',
+        ]);
+        $dea->assignRole($role1);
+
         $operator = \App\Models\User::factory()->create([
             'name' => 'Admin Perpus',
             'email' => 'admin@perpus.test',
@@ -109,7 +123,6 @@ class PermissionSeeder extends Seeder
             'alamat' => 'Jl. Jalan',
             'foto' => 'admin.jpg',
             'agama' => 'islam',
-
         ]);
         $operator->assignRole($role2);
 
