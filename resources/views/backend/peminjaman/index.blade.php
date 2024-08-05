@@ -26,7 +26,7 @@
                         </a>
                     </div>
                 @endrole
-                
+
                 <div class="block-options">
                     <form action="{{ route('pinjam-buku.index') }}" method="GET">
                         <div class="input-group">
@@ -50,105 +50,105 @@
 
             </div>
             <div class="block-content block-content-full">
-                <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                    <thead>
-                        <tr>
-                            <th class="text-center">No</th>
-                            <th>Kode</th>
-                            <th>Tanggal</th>
-                            <th>Nama Anggota</th>
-                            <th>Kelas</th>
-                            <th>Judul Pustaka</th>
-                            <th>Jumlah</th>
-                            <th>Kategori</th>
-                            <th class="text-center">Status</th>
-                            <th class="text-center" style="width: 15%;">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($dataPeminjaman as $index => $row)
+                <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                        <thead>
                             <tr>
-                                <td class="text-center">{{ $index + 1 }}</td>
-                                <td>{{ $row->kode_peminjaman }}</td>
-                                <td>{{ $row->tanggal_pinjam }}</td>
-                                <td>{{ $row->user->name }}</td>
-                                <td>{{ $row->user->kelas }}</td>
-                                <td>
-                                    {{ $row->pustaka->judul_pustaka }}
-                                </td>
-                                <td>1 Pustaka</td>
-                                <td>{{ $row->pustaka->kategori->nama_kategori_pustaka }}</td>
-                                <td class="text-center">
-                                    @php
-                                        $today = \Carbon\Carbon::now();
-                                        $tanggalPinjam = \Carbon\Carbon::parse($row->tanggal_pinjam);
-                                        $diffInDays = $today->diffInDays($tanggalPinjam, true);
+                                <th class="text-center">No</th>
+                                <th>Kode</th>
+                                <th>Tanggal</th>
+                                <th>Nama Anggota</th>
+                                <th>Kelas</th>
+                                <th>Judul Pustaka</th>
+                                <th>Jumlah</th>
+                                <th>Kategori</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center" style="width: 15%;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($dataPeminjaman as $index => $row)
+                                <tr>
+                                    <td class="text-center">{{ $index + 1 }}</td>
+                                    <td>{{ $row->kode_peminjaman }}</td>
+                                    <td>{{ $row->tanggal_pinjam }}</td>
+                                    <td>{{ $row->user->name }}</td>
+                                    <td>{{ $row->user->kelas }}</td>
+                                    <td>{{ $row->pustaka->judul_pustaka }}</td>
+                                    <td>1 Pustaka</td>
+                                    <td>{{ $row->pustaka->kategori->nama_kategori_pustaka }}</td>
+                                    <td class="text-center">
+                                        @php
+                                            $today = \Carbon\Carbon::now();
+                                            $tanggalPinjam = \Carbon\Carbon::parse($row->tanggal_pinjam);
+                                            $diffInDays = $today->diffInDays($tanggalPinjam, true);
 
-                                        if ($row->status == 'diajukan') {
-                                            $statusLabel = 'Diajukan';
-                                            $badgeClass = 'bg-warning';
-                                        } elseif ($row->status == 'dipinjam') {
-                                            if ($diffInDays > 30) {
-                                                $statusLabel = 'Terlambat 30 Hari : Membersihkan kamar mandi';
-                                                $badgeClass = 'bg-danger';
-                                            } elseif ($diffInDays > 7) {
-                                                $statusLabel = 'Terlambat 7 Hari : Membersihkan Perpustakaan';
-                                                $badgeClass = 'bg-danger';
-                                            } else {
-                                                $statusLabel = 'Dipinjam';
+                                            if ($row->status == 'diajukan') {
+                                                $statusLabel = 'Diajukan';
+                                                $badgeClass = 'bg-warning';
+                                            } elseif ($row->status == 'dipinjam') {
+                                                if ($diffInDays > 30) {
+                                                    $statusLabel = 'Terlambat 30 Hari : Membersihkan kamar mandi';
+                                                    $badgeClass = 'bg-danger';
+                                                } elseif ($diffInDays > 7) {
+                                                    $statusLabel = 'Terlambat 7 Hari : Membersihkan Perpustakaan';
+                                                    $badgeClass = 'bg-danger';
+                                                } else {
+                                                    $statusLabel = 'Dipinjam';
+                                                    $badgeClass = 'bg-success';
+                                                }
+                                            } elseif ($row->status == 'dikembalikan') {
+                                                $statusLabel = 'Dikembalikan';
                                                 $badgeClass = 'bg-success';
+                                            } else {
+                                                $statusLabel = 'Dibatalkan';
+                                                $badgeClass = 'bg-danger';
                                             }
-                                        } elseif ($row->status == 'dikembalikan') {
-                                            $statusLabel = 'Dikembalikan';
-                                            $badgeClass = 'bg-success';
-                                        } else {
-                                            $statusLabel = 'Dibatalkan';
-                                            $badgeClass = 'bg-danger';
-                                        }
-                                    @endphp
+                                        @endphp
 
-                                    <span class="badge {{ $badgeClass }}">{{ $statusLabel }}</span>
-                                </td>
-                                <td class="text-center">
-                                    @role(['admin', 'super admin'])
-                                        @if ($row->status == 'diajukan')
-                                            <form action="{{ route('pinjam-buku.verifikasi', $row->id) }}" method="POST"
-                                                style="display: inline">
-                                                @csrf
-                                                <button type="submit" class="btn btn-sm btn-success">
-                                                    <i class="fa fa-check"></i>
-                                                </button>
-                                            </form>
-                                            {{-- dibatalkan --}}
-                                            <form action="{{ route('pinjam-buku.dibatalkan', $row->id) }}" method="POST"
-                                                style="display: inline">
-                                                @csrf
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </form>
-                                        @elseif ($row->status == 'dipinjam')
-                                            <form action="{{ route('pinjam-buku.verifikasi-pengembalian', $row->id) }}"
-                                                method="POST" style="display: inline">
-                                                @csrf
-                                                <button type="submit" class="btn btn-sm btn-primary">
-                                                    <i class="fa fa-undo"></i>
-                                                </button>
-                                            </form>
-                                        @endif
-                                    @endrole
-                                    <a href="{{ route('pinjam-buku.edit', $row->id) }}" class="btn btn-sm btn-warning">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a href="{{ route('pinjam-buku.invoice', $row->id) }}" class="btn btn-sm btn-info">
-                                        <i class="fa fa-print"></i>
-                                    </a>
-                                </td>
-                        @endforeach
-
-                    </tbody>
-                </table>
+                                        <span class="badge {{ $badgeClass }}">{{ $statusLabel }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        @role(['admin', 'super admin'])
+                                            @if ($row->status == 'diajukan')
+                                                <form action="{{ route('pinjam-buku.verifikasi', $row->id) }}" method="POST"
+                                                    style="display: inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-success">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                </form>
+                                                {{-- dibatalkan --}}
+                                                <form action="{{ route('pinjam-buku.dibatalkan', $row->id) }}" method="POST"
+                                                    style="display: inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-danger">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </form>
+                                            @elseif ($row->status == 'dipinjam')
+                                                <form action="{{ route('pinjam-buku.verifikasi-pengembalian', $row->id) }}"
+                                                    method="POST" style="display: inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-primary">
+                                                        <i class="fa fa-undo"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        @endrole
+                                        <a href="{{ route('pinjam-buku.edit', $row->id) }}" class="btn btn-sm btn-warning">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="{{ route('pinjam-buku.invoice', $row->id) }}" class="btn btn-sm btn-info">
+                                            <i class="fa fa-print"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <!-- END Dynamic Table Full -->
