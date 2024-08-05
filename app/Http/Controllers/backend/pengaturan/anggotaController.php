@@ -35,7 +35,7 @@ class AnggotaController extends Controller
                 'no_telp' => 'required',
                 'alamat' => 'required',
                 'tgl_lahir' => 'required',
-                'foto' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+                'foto' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
                 'kelas' => 'required',
                 'password' => 'required|min:6',
             ],
@@ -60,8 +60,11 @@ class AnggotaController extends Controller
             ],
         );
 
-        // Menangani file upload
-        $fotoPath = $request->file('foto')->store('foto');
+        if ($request->hasFile('foto')) {
+            $fotoPath = $request->file('foto')->store('foto');
+        } else {
+            $fotoPath = null;
+        }
 
         // Buat user baru
         $user = User::create([
@@ -75,6 +78,7 @@ class AnggotaController extends Controller
             'tgl_lahir' => $request->input('tgl_lahir'),
             'foto' => $fotoPath,
             'kelas' => $request->input('kelas'),
+            'agama' => $request->input('agama'),
             'password' => bcrypt($request->input('password')),
         ]);
 
@@ -119,6 +123,7 @@ class AnggotaController extends Controller
             'alamat' => request('alamat'),
             'tgl_lahir' => request('tgl_lahir'),
             'kelas' => request('kelas'),
+            'agama' => request('agama'),
         ]);
 
         if (request()->hasFile('foto')) {

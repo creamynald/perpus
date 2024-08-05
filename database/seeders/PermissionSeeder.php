@@ -94,6 +94,7 @@ class PermissionSeeder extends Seeder
             'no_telp' => '081234567890',
             'alamat' => 'Jl. Jalan',
             'foto' => 'siswa.jpg',
+            'agama' => 'islam',
         ]);
         $siswa->assignRole($role1);
 
@@ -107,6 +108,7 @@ class PermissionSeeder extends Seeder
             'no_telp' => '081234567890',
             'alamat' => 'Jl. Jalan',
             'foto' => 'admin.jpg',
+            'agama' => 'islam',
 
         ]);
         $operator->assignRole($role2);
@@ -121,6 +123,7 @@ class PermissionSeeder extends Seeder
             'no_telp' => '081234567890',
             'alamat' => 'Jl. Jalan',
             'foto' => 'kepsek.jpg',
+            'agama' => 'islam',
         ]);
         $kepsek->assignRole($role3);
 
@@ -134,6 +137,7 @@ class PermissionSeeder extends Seeder
             'no_telp' => '081234567890',
             'alamat' => 'Jl. Jalan',
             'foto' => 'superadmin.jpg',
+            'agama' => 'islam',
         ]);
         $superadmin->assignRole($role4);
     }

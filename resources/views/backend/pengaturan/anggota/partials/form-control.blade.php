@@ -108,6 +108,31 @@
             </div>
             <div class="col-sm-6">
                 <div class="mb-4">
+                    <label class="form-label" for="agama">Agama</label>
+                    <select class="form-select" id="agama" name="agama" required>
+                        <option value="islam"
+                            {{ old('agama') == 'islam' ? 'selected' : ($user->agama == 'islam' ? 'selected' : '') }}>
+                            Islam</option>
+                        <option value="kristen"
+                            {{ old('agama') == 'kristen' ? 'selected' : ($user->agama == 'kristen' ? 'selected' : '') }}>
+                            Kristen</option>
+                        <option value="katolik"
+                            {{ old('agama') == 'katolik' ? 'selected' : ($user->agama == 'katolik' ? 'selected' : '') }}>
+                            Katolik</option>
+                        <option value="hindu"
+                            {{ old('agama') == 'hindu' ? 'selected' : ($user->agama == 'hindu' ? 'selected' : '') }}>
+                            Hindu</option>
+                        <option value="buddha"
+                            {{ old('agama') == 'buddha' ? 'selected' : ($user->agama == 'buddha' ? 'selected' : '') }}>
+                            Buddha</option>
+                        <option value="konghucu"
+                            {{ old('agama') == 'konghucu' ? 'selected' : ($user->agama == 'konghucu' ? 'selected' : '') }}>
+                            Konghucu</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="mb-4">
                     <label class="form-label" for="foto">Foto</label>
                     <input class="form-control" type="file" id="foto" name="foto"
                         {{ request()->routeIs('anggota.create') ? 'required' : '' }}>
