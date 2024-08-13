@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+clear<!DOCTYPE html>
 <html lang="en">
 
 <head>
