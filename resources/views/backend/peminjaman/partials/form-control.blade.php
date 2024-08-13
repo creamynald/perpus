@@ -55,7 +55,7 @@
                         value="{{ isset($model) ? $model->tanggal_pinjam : '' }}">
                 </div>
             </div>
-
+    
             <div class="col-sm-6">
                 <div class="mb-4">
                     <label class="form-label" for="tanggal_kembali">Tanggal Kembali</label>
