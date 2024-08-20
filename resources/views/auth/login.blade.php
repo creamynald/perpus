@@ -10,7 +10,7 @@
         <div class="block-content">
             <div class="form-floating mb-4">
                 <input type="text" class="form-control" id="email" name="email" placeholder="Enter your username">
-                <label class="form-label" for="email">Surel</label>
+                <label class="form-label" for="email">Email</label>
             </div>
             <div class="form-floating mb-4">
                 <input type="password" class="form-control" id="password" name="password"

@@ -1,9 +1,11 @@
+@extends('backend.layouts.app')
+@section('content')
 <div class="block block-rounded">
     <div class="block-header block-header-default">
         <h3 class="block-title">Table @yield('subTitle')</h3>
         <div class="block-options">
             <button type="submit" class="btn-block-option">
-                <i class="fa fa-fw fa-check opacity-50"></i> {{ $submit }}
+                <i class="fa fa-fw fa-check opacity-50"></i> submit
             </button>
             <a href="{{ route('pinjam-buku.index') }}" class="btn-block-option">Kembali</a>
         </div>
@@ -36,12 +38,11 @@
                 <div class="mb-4">
                     <label class="form-label" for="pustaka_id">Buku</label>
                     <select class="form-select" id="pustaka_id" name="pustaka_id">
-					 @foreach ($dataBuku as $row)
-                            <option value="{{ $row->id }}"
-                                {{ isset($model) && $model->pustaka_id == $row->id ? 'selected' : '' }}>
-                                {{ $row->judul_pustaka }}
+                       @foreach ($pustaka as $data)
+                            <option value="" selected>
+                               {{ $data->judul_pustaka }}
                             </option>
-                        @endforeach
+						@endforeach	
                     </select>
                 </div>
             </div>
@@ -64,3 +65,4 @@
         </div>
     </div>
 </div>
+@endsection

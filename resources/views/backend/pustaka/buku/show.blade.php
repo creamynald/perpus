@@ -11,7 +11,7 @@
         </div>
         <div class="block block-rounded block-fx-shadow">
             <div class="block-content p-0 bg-image"
-                style="background-image: url('{{ asset('img/pustaka/' . $pustaka->gambar_pustaka) }}');">
+                style="background-image: url('{{ asset('assets/img/pustaka/' . $pustaka->gambar_pustaka) }}');">
                 <div class="px-3 py-8 bg-black-50 text-center rounded-top">
                     @if ($pustaka->stok <= 0)
                         <span class="badge bg-danger text-uppercase fw-bold py-2 px-3">Semua buku telah dipinjam, coba lagi
@@ -57,7 +57,7 @@
                     <div class="col-6 col-md-4">
                         <p>
                             <i class="fa fa-fw fa-tag opacity-50 me-1"></i>
-                            <strong>{{ $pustaka->kategori->nama_kategori_pustaka }}</strong>
+                            <strong>{{ $pustaka->judul_pustaka }}</strong>
                         </p>
                     </div>
                 </div>
@@ -66,7 +66,8 @@
                 <a class="btn btn-alt-danger" href="javascript:void(0)">
                     <i class="far fa-fw fa-heart"></i>
                 </a>
-                <a class="btn btn-alt-primary" href="{{ route('pinjam-buku.create') }}">
+				
+				<a class="btn btn-alt-primary" href="{{ route('pinjam-buku.show',$pustaka->id)}}">
                     <i class="fa fa-book opacity-50 me-1"></i>
                     <span>Pinjam Buku</span>
                 </a>

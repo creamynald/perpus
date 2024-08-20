@@ -12,6 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class peminjamanController extends Controller
 {
+	
     public function __construct()
     {
         $this->middleware('role:siswa|admin|super admin');
@@ -19,6 +20,7 @@ class peminjamanController extends Controller
 
     public function index(Request $request)
     {
+		
         // Get the status filter from the request
         $status = $request->get('status');
 
@@ -55,8 +57,7 @@ class peminjamanController extends Controller
             'dataPeminjaman' => $dataPeminjaman,
         ]);
     }
-
-    public function create()
+public function create()
     {
         $currentUser = auth()->user();
 
@@ -65,10 +66,25 @@ class peminjamanController extends Controller
         } else {
             $dataSiswa = User::role('siswa')->orderBy('name', 'asc')->get();
         }
-
+		$datapustaka = Pustaka::where('id', $currentUser->id)->get();
         return view('backend.peminjaman.create', [
             'dataSiswa' => $dataSiswa,
-            'dataBuku' => Pustaka::orderBy('judul_pustaka', 'asc')->get(),
+            'pustaka' => $datapustaka,
+        ]);
+    }
+    public function show($id)
+    {
+		$pustaka = Pustaka::findOrFail($id);
+        $currentUser = auth()->user();
+        if ($currentUser->hasRole('siswa')) {
+            $dataSiswa = User::where('id', $currentUser->id)->get();
+        } else {
+            $dataSiswa = User::role('siswa')->orderBy('name', 'asc')->get();
+        }
+		$datapustaka = Pustaka::where('id', $id)->get();
+        return view('backend.peminjaman.show', [
+		'pustaka' => $datapustaka,
+            'dataSiswa' => $dataSiswa,
         ]);
     }
 

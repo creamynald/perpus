@@ -75,9 +75,9 @@
                                     <td>{{ $row->tanggal_pinjam }}</td>
                                     <td>{{ $row->user->name }}</td>
                                     <td>{{ $row->user->kelas }}</td>
-                                    <td>{{ $row->pustaka->judul_pustaka }}</td>
+                                    <td></td>
                                     <td>1 Pustaka</td>
-                                    <td>{{ $row->pustaka->kategori->nama_kategori_pustaka }}</td>
+                                    <td></td>
                                     <td class="text-center">
                                         @php
                                             $today = \Carbon\Carbon::now();

@@ -73,10 +73,11 @@
                     <div class="block block-rounded ribbon ribbon-modern ribbon-danger">
                         <div class="ribbon-box text-uppercase">
                             {{ $row->kategori ? $row->kategori->nama_kategori_pustaka : 'Unknown' }}
+            background-image: url('{{ asset('assets/media/photos/bg-login.jpg') }}');
                         </div>
                         <div class="block-content p-0 overflow-hidden">
                             <a class="img-link" href="{{ route('buku.show', $row->id) }}">
-                                <img class="img-fluid rounded-top" src="{{ asset('img/pustaka/' . $row->gambar_pustaka) }}"
+                                <img class="img-fluid rounded-top" src="{{asset('assets/img/pustaka/'.$row->gambar_pustaka) }}"
                                     alt="{{ $row->judul_pustaka }}">
                             </a>
                         </div>
